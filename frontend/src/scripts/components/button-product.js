@@ -50,6 +50,7 @@ export default class ButtonProduct extends HTMLElement {
     set state(newState) {
         this.#state = newState;
         this.render();
+        console.log(this.id);
     }
 }
 

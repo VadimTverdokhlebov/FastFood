@@ -1,20 +1,32 @@
 import pubSub from '../PubSub.js';
-
+import { store } from '../store/store.js';
+import { addProduct } from '../store/actionCreators/addProduct.js';
 export default class ProductCard {
+
     root;
     elementMenu;
-    #state = {};
+
+    #state = {
+        quantity: 1,
+    };
 
     constructor(root, elementMenu) {
         this.root = root;
         this.elementMenu = elementMenu;
+
+        this.innerDiv = document.createElement('div');
+        this.innerDiv.id = `#innerDiv${this.elementMenu.id}`;
+
+        this.root.prepend(this.innerDiv);
+
         this.render();
     }
 
     render() {
-        let html = /*html*/
+        const html = /*html*/
+
             `<div class="product">
-        <img class="foodLogo" src="http://localhost:3000/images/markets/subway_logo.png">
+            <img class="foodLogo" src="http://localhost:3000/images/markets/subway.png">
         
             <img class="foodPicture" src="http://localhost:3000/${this.elementMenu.image}">
         
@@ -29,25 +41,67 @@ export default class ProductCard {
 
         <form class="formAddBasket" id="addBasket" method="POST">
             <div class="foodCounter">
-            <button-product></button-product>
-            </div>
-            <input class="buttonBuy" id="buttonId${this.elementMenu.id}" type="button" value = "В КОРЗИНУ">
-        </form>
 
-    </div>`
-        this.root.insertAdjacentHTML("afterbegin", html);
-        this.buttonAddEventListener();
+                <button id="btn2${this.elementMenu.id}" type="button">
+                    <img alt="-" src="http://localhost:3000/images/minus.png" class="buttonMinus"/>
+                </button>
+                    <input class="quantity" type="text" value="${this.#state.quantity}">
+                <button id="btn1${this.elementMenu.id}" type="button">
+                    <img alt="+" src="http://localhost:3000/images/plus.png" class="buttonPlus"/>
+                </button>
+                </div>
+                
+                <input class="buttonBuy" id="buttonId${this.elementMenu.id}" type="button" value = "В КОРЗИНУ">
+        </form>
+        </div>`
+
+        this.innerDiv.innerHTML = html;
+        this.buttonToBaskedAddEventListener()
+        this.buttonsAddEventListener();
     }
 
-    buttonAddEventListener() {
-        this.root.querySelector(`#buttonId${this.elementMenu.id}`)
+    buttonToBaskedAddEventListener() {
+        this.innerDiv.querySelector(`#buttonId${this.elementMenu.id}`)
             .addEventListener('click', () => {
-                pubSub.publish("addProductToBasket", this.elementMenu);
+                // pubSub.publish("addProductToBasket", this.elementMenu);
+                store.dispatch(addProduct(this.elementMenu.id, this.#state.quantity));
             })
+    }
+
+    buttonsAddEventListener() {
+        this.innerDiv.querySelector(`#btn1${this.elementMenu.id}`)
+            .addEventListener("click", this.increment.bind(this));
+
+        this.innerDiv.querySelector(`#btn2${this.elementMenu.id}`)
+            .addEventListener("click", this.decrement.bind(this));
+    }
+
+    increment() {
+        if (this.#state.quantity < 20) {
+            this.state = {
+                ...this.#state,
+                quantity: this.#state.quantity + 1,
+            };
+        }
+    }
+
+    decrement() {
+        if (this.#state.quantity > 1) {
+            this.state = {
+                ...this.#state,
+                quantity: this.#state.quantity - 1,
+            };
+        }
     }
 
     set state(newState) {
         this.#state = newState;
+        this.elementMenu.quantity = this.#state.quantity;
         this.render();
+
+        pubSub.publish('quantityChanged', {
+            productId: this.elementMenu.id,
+            count: this.#state.quantity
+        });
     }
 }
