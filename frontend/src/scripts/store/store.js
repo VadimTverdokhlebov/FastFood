@@ -1,8 +1,8 @@
 import { createStore } from 'redux';
 import { addProductToBasket } from './reducers/addProductToBasket.js';
-import {receivedDataProduct} from './reducers/receivedDataProduct.js';
+import { receivedDataProduct } from './reducers/receivedDataProduct.js';
 
-const store = createStore(addProductToBasket);
+const storageBasket = createStore(addProductToBasket);
 const storeDataProduct = createStore(receivedDataProduct);
 
-export { store, storeDataProduct };
+export { storageBasket, storeDataProduct };

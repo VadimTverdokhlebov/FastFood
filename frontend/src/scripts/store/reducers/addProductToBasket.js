@@ -1,19 +1,26 @@
-import { PRODUCT_ADD } from '../actions/action.js';
+import { PRODUCT_ADD, PRODUCT_SET_QUANTITY } from '../constants/actionTypes.js';
+const initialState = [];
 
-const initState = {
-    items: []
-}
-
-export function addProductToBasket(state = initState.items, action) {
+export function addProductToBasket(state = initialState, action) {
     switch (action.type) {
         case PRODUCT_ADD:
-            return {
-                items: [{
-                    id: action.id.id,
-                    quantity: action.quantity.quantity
-                }]
-            };
 
+            return [
+                ...state,
+                action.product
+            ];
+
+        case PRODUCT_SET_QUANTITY:
+            let cloneState = [];
+
+            for (let elem of state) {
+                if (elem.id != action.product.id) {
+                    cloneState.push(elem);
+                } else {
+                    cloneState.push(action.product);
+                }
+            }
+            return  cloneState;
 
         default: return state;
     }

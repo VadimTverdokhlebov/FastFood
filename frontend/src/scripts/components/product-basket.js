@@ -1,10 +1,11 @@
 export default class ProductBasket extends HTMLElement {
     constructor() {
         super();
+        this.render();
     }
 
     render() {
-        this.innerHTML = /*html*/`
+        let html = /*html*/`
         <div id="basket">
         <div id="basketHead">
             <img id="basketIcon" src="http://localhost:3000/images/shoppingbasket_83998.png">
@@ -27,13 +28,8 @@ export default class ProductBasket extends HTMLElement {
             </form>
         </div>
     </div>`;
-    }
 
-    connectedCallback() {
-        if (!this.rendered) {
-            this.render();
-            this.rendered = true;
-        }
+    this.innerHTML = html;
     }
 }
 

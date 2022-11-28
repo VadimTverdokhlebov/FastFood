@@ -1,16 +1,12 @@
-import { PRODUCT_RECEIVED } from '../actions/action.js';
+import { PRODUCT_RECEIVED } from '../constants/actionTypes.js';
 
-const initState = {
-    productData: {}
-}
+const initState = {}
 
 export function receivedDataProduct(state = initState.productData, action) {
     switch (action.type) {
         case PRODUCT_RECEIVED:
-            return {
-                productData: action.productData
-            };
 
+            return action.productData;
 
         default: return state;
     }

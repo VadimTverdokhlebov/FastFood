@@ -34,7 +34,7 @@ export default class MainMenu extends HTMLElement {
     ];
 
     #state = {
-        selected: 'sandwiches'
+        selectedCategory: 'sandwiches',
     }
 
     constructor() {
@@ -45,7 +45,7 @@ export default class MainMenu extends HTMLElement {
     render() {
         let html = '<ul class="mainMenu">';
         for (let key of this.#categoriesMenu) {
-            if (this.#state.selected === key.id) {
+            if (this.#state.selectedCategory === key.id) {
                 html += `<li class="categoryMenu activeElementMenu" id="${key.id}">${key.name}</li>`;
             } else {
                 html += `<li class="categoryMenu" id="${key.id}">${key.name}</li>`;
@@ -55,13 +55,16 @@ export default class MainMenu extends HTMLElement {
         html += '</ul>';
         this.innerHTML = html;
         this.categoryAddEventListener();
+
     }
 
     categoryAddEventListener() {
         let categoriesMenu = document.querySelectorAll('.categoryMenu');
         for (let category of categoriesMenu) {
             category.addEventListener('click', () => {
-                this.setCategory(category.id);
+                if(category.id != this.#state.selectedCategory){
+                    this.setCategory(category.id);
+                }
             })
         }
     }
@@ -69,14 +72,14 @@ export default class MainMenu extends HTMLElement {
     setCategory(categoryId) {
         this.state = {
             ...this.#state,
-            selected: categoryId,
+            selectedCategory: categoryId,
         };
     }
 
     set state(newState) {
         this.#state = newState;
         this.render();
-        pubSub.publish("changeCategory", this.#state.selected);
+        pubSub.publish("changeCategory", this.#state.selectedCategory);
     }
 }
 

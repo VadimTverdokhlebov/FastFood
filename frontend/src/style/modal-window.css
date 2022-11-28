@@ -1,0 +1,116 @@
+.modalContainer {
+    display: block;
+    width: 1000px;
+    max-width: 100%;
+    height: 500px;
+    max-height: 100%;
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modalContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px 50px 20px 20px;
+    overflow-x: hidden;
+    background-color: lightgray;
+}
+
+#menuModal {
+    display: flex;
+    justify-content: space-between;
+    padding-inline-start: 0;
+    width: 1010px;
+    height: 30px;
+    box-shadow: 2px 4px 6px rgb(141, 137, 137);
+    font-size: 24px;
+    background-color: white;
+}
+
+#menuModal li {
+    width: 100%;
+    height: 30px;
+    display:inline-block;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#productContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.modalProductCard {
+    margin: 10px;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.listComponentSandwiches {
+    padding: 5px;
+}
+
+#customSandwichContainer {
+    margin: 20px; 
+    border-bottom: 1px solid black;
+}
+#yourSandwichIsDone {
+    font-size: 24px;
+    border-bottom: 1px solid black;
+}
+.customSandwichPreview {
+    margin: 20px;
+    text-align: center;
+}
+#orderCustomSandwich {
+    margin: 20px;
+    text-align: center;
+
+}
+.doneProductContainer {
+    display: grid;
+}
+.customSandwichMenu {
+    display: flex;
+}
+
+#backButton {
+    width: 60px;
+    height: 30px;
+    border-radius: 4px;
+    float: left;
+    color: white;
+    background-color: rgb(235, 74, 52);
+}
+
+#forwardButton{
+    width: 60px;
+    height: 30px;
+
+    float: right;
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(235, 74, 52);
+}

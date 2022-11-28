@@ -1,5 +1,3 @@
-import pubSub from '../PubSub.js';
-
 export default class ButtonProduct extends HTMLElement {
     #state = {
         counter: 1,

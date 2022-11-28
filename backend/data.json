@@ -244,7 +244,13 @@
             "market": "subway",
             "type": "multiple",
             "weight": 1,
-            "components": {},
+            "components": {
+                "size": "1x",
+                "bread": "white-italian",
+                "vegetable": [],
+                "sauce": [],
+                "filling": []
+            },
             "id": 13
         },
         {

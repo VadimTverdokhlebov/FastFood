@@ -1,6 +1,6 @@
-import pubSub from '../PubSub.js';
-import { store } from '../store/store.js';
+import { storageBasket } from '../store/store.js';
 import { addProduct } from '../store/actionCreators/addProduct.js';
+
 export default class ProductCard {
 
     root;
@@ -56,15 +56,17 @@ export default class ProductCard {
         </div>`
 
         this.innerDiv.innerHTML = html;
-        this.buttonToBaskedAddEventListener()
+        this.buttonToBaskedAddEventListener();
         this.buttonsAddEventListener();
     }
 
     buttonToBaskedAddEventListener() {
         this.innerDiv.querySelector(`#buttonId${this.elementMenu.id}`)
             .addEventListener('click', () => {
-                // pubSub.publish("addProductToBasket", this.elementMenu);
-                store.dispatch(addProduct(this.elementMenu.id, this.#state.quantity));
+                const id = this.elementMenu.id;
+                const quantity = this.#state.quantity;
+                const name = this.elementMenu.name;
+                storageBasket.dispatch(addProduct(id, quantity, name));
             })
     }
 
@@ -96,12 +98,6 @@ export default class ProductCard {
 
     set state(newState) {
         this.#state = newState;
-        this.elementMenu.quantity = this.#state.quantity;
         this.render();
-
-        pubSub.publish('quantityChanged', {
-            productId: this.elementMenu.id,
-            count: this.#state.quantity
-        });
     }
 }
