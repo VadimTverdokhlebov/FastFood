@@ -79,7 +79,7 @@ export default class ProductCard {
     }
 
     increment() {
-        if (this.#state.quantity < 20) {
+        if (this.#state.quantity < 10) {
             this.state = {
                 ...this.#state,
                 quantity: this.#state.quantity + 1,

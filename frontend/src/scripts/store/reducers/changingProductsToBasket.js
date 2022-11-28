@@ -1,7 +1,7 @@
-import { PRODUCT_ADD, PRODUCT_SET_QUANTITY } from '../constants/actionTypes.js';
+import { PRODUCT_ADD, PRODUCT_SET_QUANTITY, DELETE_PRODUCT } from '../constants/actionTypes.js';
 const initialState = [];
 
-export function addProductToBasket(state = initialState, action) {
+export function changingProductsToBasket(state = initialState, action) {
     switch (action.type) {
         case PRODUCT_ADD:
 
@@ -21,6 +21,10 @@ export function addProductToBasket(state = initialState, action) {
                 }
             }
             return  cloneState;
+        
+        case DELETE_PRODUCT:
+
+            return action.product;
 
         default: return state;
     }

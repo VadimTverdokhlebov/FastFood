@@ -9,10 +9,11 @@ export function addProduct(productId, quantity) {
     const productBase = menu.find(product => product.id == productId)
     const currentQuantity = getCurrentQuantityProduct(productId, basket);
     
-    const product = Object.assign({}, 
-        { id: productBase.id }, 
-        { price: productBase.price }, 
-        { name: productBase.name });
+    const product = {
+        id: productBase.id, 
+        price: productBase.price, 
+        name: productBase.name
+    };
 
     product.quantity = (currentQuantity != false) ? quantity + currentQuantity : quantity;
 
@@ -38,3 +39,5 @@ function getCurrentQuantityProduct(productId, basket) {
     }
     return false;
 }
+
+//Array.isArray();
