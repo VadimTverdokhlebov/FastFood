@@ -52,7 +52,7 @@ export default class ProductBasket extends HTMLElement {
             </div>
                 <div id="basketOrder">
                     <div id="basketTotal">
-                        <p>СУММА: ${sumOrder} Р.</p>
+                        <p>СУММА: ${sumOrder} РУБ.</p>
                     </div>
 
                     <form>

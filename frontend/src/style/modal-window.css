@@ -2,7 +2,7 @@
     display: block;
     width: 1000px;
     max-width: 100%;
-    height: 500px;
+    height: 600px;
     max-height: 100%;
     position: fixed;
     z-index: 100;
@@ -11,6 +11,17 @@
     transform: translate(-50%, -50%);
     background: white;
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+}
+
+.bottonContainer{
+    background-color: var(--light-yelloy-color);
+}
+
+.buttonRemoveModal {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
 }
 
 .modalOverlay {
@@ -23,13 +34,19 @@
     background: rgba(0, 0, 0, 0.6);
 }
 
-.modalContent {
+.modalTop {
+    padding: 0;
+    width: 100%;
+    height: 50px;
+    background-color: var(--light-yelloy-color);
+}
+
+#modalContent {
     position: absolute;
-    top: 0;
+    top: 0;  
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 20px 50px 20px 20px;
     overflow-x: hidden;
     background-color: lightgray;
 }
@@ -38,20 +55,42 @@
     display: flex;
     justify-content: space-between;
     padding-inline-start: 0;
-    width: 1010px;
-    height: 30px;
+    margin: 20px 20px 20px 20px;
+    max-width: 960px;
+    height: 46px;
+    border-radius: 5px;
     box-shadow: 2px 4px 6px rgb(141, 137, 137);
     font-size: 24px;
     background-color: white;
 }
 
-#menuModal li {
+.textMenuModal{
+    margin-top: 8px;
+}
+
+.descriptionCategoryMenuModal{
+    margin: -14px;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.212), 0 0 1em rgb(189, 183, 183);
+}
+
+.categoryMenuModal {
     width: 100%;
-    height: 30px;
-    display:inline-block;
+    display: inline-block;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
+}
+
+.selectedCategoryMenuModal {
+    margin-top: 0px;
+    padding-top: 0px;
+    height: 46px;
+    color: white;
+    background-color: rgb(235, 74, 52);
 }
 
 #productContainer {
@@ -59,8 +98,9 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
 .modalProductCard {
-    margin: 10px;
+    margin: 20px;
     width: 300px;
     height: 300px;
     text-align: center;
@@ -73,42 +113,54 @@
 }
 
 #customSandwichContainer {
-    margin: 20px; 
+    margin: 20px;
     border-bottom: 1px solid black;
 }
+
 #yourSandwichIsDone {
     font-size: 24px;
     border-bottom: 1px solid black;
 }
+
 .customSandwichPreview {
     margin: 20px;
     text-align: center;
 }
+
 #orderCustomSandwich {
     margin: 20px;
     text-align: center;
 
 }
+
 .doneProductContainer {
     display: grid;
 }
+
 .customSandwichMenu {
     display: flex;
+}
+
+.navModalButtons {
+    height: 30px;
 }
 
 #backButton {
     width: 60px;
     height: 30px;
+    margin-left: 20px;
     border-radius: 4px;
+    width: 110px;
     float: left;
     color: white;
     background-color: rgb(235, 74, 52);
 }
 
-#forwardButton{
+#forwardButton {
     width: 60px;
     height: 30px;
-
+    margin-right: 20px;
+    width: 110px;
     float: right;
     border-radius: 4px;
     color: white;

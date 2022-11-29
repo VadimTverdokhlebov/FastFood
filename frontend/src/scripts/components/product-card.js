@@ -1,5 +1,6 @@
 import { storageBasket } from '../store/store.js';
 import { addProduct } from '../store/actionCreators/addProduct.js';
+import pubSub from '../PubSub.js';
 
 export default class ProductCard {
 
@@ -63,14 +64,23 @@ export default class ProductCard {
     buttonToBaskedAddEventListener() {
         this.innerDiv.querySelector(`#buttonId${this.elementMenu.id}`)
             .addEventListener('click', () => {
-                const id = this.elementMenu.id;
-                const quantity = this.#state.quantity;
-                const name = this.elementMenu.name;
-                storageBasket.dispatch(addProduct(id, quantity, name));
+                if (this.elementMenu.category == 'sandwiches') {
+
+                    pubSub.publish("showModalWindow", this.elementMenu.id);
+
+                } else {
+
+                    const id = this.elementMenu.id;
+                    const quantity = this.#state.quantity;
+                    const name = this.elementMenu.name;
+
+                    storageBasket.dispatch(addProduct(id, quantity, name));
+                }
             })
     }
 
     buttonsAddEventListener() {
+        
         this.innerDiv.querySelector(`#btn1${this.elementMenu.id}`)
             .addEventListener("click", this.increment.bind(this));
 
