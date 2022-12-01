@@ -1,59 +1,59 @@
-import MenuModal from "./menu-modal.js";
+import "./modal-menu.js";
+import "./modal-button.js";
+import "./modal-description.js";
+import "./modal-products.js";
 
-export default class ModalWindow {
+import { storageStateModal } from '../store/store.js';
+import { activityModal } from '../store/actionCreators/activityModal.js';
 
-    productId;
+export default class ModalWindow extends HTMLElement {
 
-    constructor(productId) {
-        this.productId = productId;
-
-        this.modal = document.createElement('div');
-        this.modal.id = "modalWindow";
-
-        content.after(this.modal);
-
-        this.render();
-        this.removeModalAddEventListener();
+    constructor() {
+        super();
+        this.subscribeChangeActivityModal();
     }
 
     render() {
-        const html = /*html*/`
-        <div class="modalOverlay" id="modalOverlay"></div>
-            <div class="modalContainer">
-                <div id="modalContent">
-                    <div class="bottonContainer">
-                        <button class="closeButtonModal">
-                            <img src="http://localhost:3000/images/vcsconflicting_93497.png" class="buttonRemoveModal"/>
-                        </button>
-                    </div>
-                    
-                    <div id="modalMenuContainer"><div>
-                    
-                    <div id="productContainer"></div>  
 
+        let html = /*html*/`
+            <div id="modalContainer">                
+                <div class="modalTop">
+                    <button class="closeButtonModal">
+                        <img src="http://localhost:3000/images/vcsconflicting_93497.png" class="buttonRemoveModal"/>
+                    </button>                            
+                    <modal-description></modal-description>
                 </div>
+
+                <modal-menu id="menuModal"></modal-menu>
+                <modal-button id="modalButtons"></modal-button> 
+                <modal-products id="productContainer"></modal-products>
+
             </div>`;
-        this.modal.innerHTML = html;
-        const rootModalMenu = modalMenuContainer;
-        new MenuModal(rootModalMenu);
+
+        this.innerHTML = html;
+        this.removeModalAddEventListener();
+    }
+
+    subscribeChangeActivityModal() {
+        storageStateModal.subscribe(() => {
+            this.activity = storageStateModal.getState().activity;
+
+            if (this.activity) {
+                this.render();
+            }
+
+            if (!this.activity) {
+                modalContainer.remove();
+            }
+        });
     }
 
     removeModalAddEventListener() {
-        this.modal.querySelector(`.closeButtonModal`)
+        this.querySelector(`.closeButtonModal`)
             .addEventListener('click', () => {
-                console.log("remove");
-                this.modal.remove();
+                storageStateModal.dispatch(activityModal(false));
             })
     }
 }
 
-{/* <div class="modalProductCard" id="#">
-        <div class="foodPicture">
-            <img src="#">
-        </div>
-
-        <div>$</div>
-
-        <p>Цена:  руб.</p>
-
-    </div> */}
+customElements.define("modal-window", ModalWindow);

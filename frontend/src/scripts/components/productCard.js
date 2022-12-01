@@ -1,6 +1,6 @@
-import { storageBasket } from '../store/store.js';
+import { storageBasket, storageStateModal } from '../store/store.js';
 import { addProduct } from '../store/actionCreators/addProduct.js';
-import pubSub from '../PubSub.js';
+import { activityModal } from '../store/actionCreators/activityModal.js';
 
 export default class ProductCard {
 
@@ -66,7 +66,8 @@ export default class ProductCard {
             .addEventListener('click', () => {
                 if (this.elementMenu.category == 'sandwiches') {
 
-                    pubSub.publish("showModalWindow", this.elementMenu.id);
+                    const activity = true;
+                    storageStateModal.dispatch(activityModal(activity));
 
                 } else {
 

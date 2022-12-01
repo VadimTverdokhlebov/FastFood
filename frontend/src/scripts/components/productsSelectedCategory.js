@@ -1,8 +1,8 @@
 import pubSub from '../PubSub.js';
-import ProductCard from './product-card.js';
+import ProductCard from './productCard.js';
 import { storeDataProduct } from '../store/store.js';
 
-export default class ProductsCategory {
+export default class ProductsSelectedCategory {
 
     categoryMenu;
     
