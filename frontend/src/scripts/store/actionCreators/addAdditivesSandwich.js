@@ -6,14 +6,27 @@ export function addAdditives(additiveId, categoryId) {
     const sandwichAdditives = Object.assign([], storageCustomSandwich.getState().additives);
 
     const additive = getAdditiveSandwich(additiveId, categoryId, allAdditives);
-    const indexAdditive = sandwichAdditives.findIndex(additive => additive.id == additiveId);
+    let indexAdditive = sandwichAdditives.findIndex(additive => additive.id == additiveId);
+    const quantityAdditives = sandwichAdditives.filter(additive => additive.category == categoryId).length;
 
     if (indexAdditive == -1) {
-        
-        sandwichAdditives.push(additive);
-    } else {
+        if (quantityAdditives < 3) {
+            if (categoryId === 'bread' || categoryId === 'size') {
+                
+                indexAdditive = sandwichAdditives.findIndex(additive => additive.category == categoryId);
 
-        sandwichAdditives.splice(indexAdditive, 1);
+                sandwichAdditives.splice(indexAdditive, 1);
+                sandwichAdditives.push(additive);
+
+            } else {
+                sandwichAdditives.push(additive);
+            }
+        }
+
+    } else {
+        if (categoryId !== 'bread' && categoryId !== 'size') {
+            sandwichAdditives.splice(indexAdditive, 1);
+        }
     }
 
     return {
