@@ -27,11 +27,7 @@
     background-color: white;
 }
 
-.modalSelectedAdditive {
-    background: rgba(37, 184, 23, 0.699);
-}
-
-.bottonContainer{
+.bottonContainer {
     background-color: var(--light-yelloy-color);
 }
 
@@ -62,11 +58,11 @@
     background-color: white;
 }
 
-.textMenuModal{
+.textMenuModal {
     margin-top: 8px;
 }
 
-.descriptionCategoryMenuModal{
+.descriptionCategoryMenuModal {
     margin-top: -14px;
     font-size: 24px;
     text-align: center;
@@ -81,6 +77,7 @@
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
+    transition: .3s;
 }
 
 .selectedCategoryMenuModal {
@@ -105,7 +102,12 @@
     height: 300px;
     background: white;
     border-radius: 20px;
-    text-align: center;   
+    text-align: center;
+    transition: .3s;
+}
+
+.modalProductCard:hover {
+    background-color: var(--light-yelloy-color);
 }
 
 #customSandwichContainer {
@@ -120,20 +122,23 @@
 
 .customSandwichPreview {
     margin: 20px;
+    margin-top: 50px;
     text-align: center;
 }
 
 #orderCustomSandwich {
-    margin: 20px;
     text-align: center;
 
 }
 
 .doneProductContainer {
     display: grid;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .customSandwichMenu {
+    margin-top: -30px;
     display: flex;
 }
 

@@ -1,6 +1,7 @@
-import { storageBasket, storageStateModal } from '../store/store.js';
-import { addProduct } from '../store/actionCreators/addProduct.js';
+import { storageBasket, storageStateModal, storageCustomSandwich } from '../store/store.js';
+import { addProduct } from '../store/actionCreators/addProductToBasket.js';
 import { activityModal } from '../store/actionCreators/activityModal.js';
+import { addSelectedSandwich } from '../store/actionCreators/addSelectedSandwich.js';
 
 export default class ProductCard {
 
@@ -50,7 +51,7 @@ export default class ProductCard {
                 <button id="btn1${this.elementMenu.id}" type="button">
                     <img alt="+" src="http://localhost:3000/images/plus.png" class="buttonPlus"/>
                 </button>
-                </div>
+            </div>
                 
                 <input class="buttonBuy" id="buttonId${this.elementMenu.id}" type="button" value = "В КОРЗИНУ">
         </form>
@@ -66,9 +67,13 @@ export default class ProductCard {
             .addEventListener('click', () => {
                 if (this.elementMenu.category == 'sandwiches') {
 
+                    const id = this.elementMenu.id;
+                    const quantity = this.#state.quantity;
                     const activity = true;
-                    storageStateModal.dispatch(activityModal(activity));
 
+                    storageStateModal.dispatch(activityModal(activity));
+                    storageCustomSandwich.dispatch(addSelectedSandwich(id, quantity));
+            
                 } else {
 
                     const id = this.elementMenu.id;

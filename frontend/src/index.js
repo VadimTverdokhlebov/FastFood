@@ -1,8 +1,8 @@
 import './style/main.css';
 import './index.html';
-import './scripts/components/modal-window.js';
-import './scripts/components/product-basket.js';
-import './scripts/components/main-menu.js';
+import './scripts/components/modalWindow.js';
+import './scripts/components/productBasket.js';
+import './scripts/components/mainMenu.js';
 import { productReceived } from './scripts/store/actionCreators/productReceived.js';
 import ProductsSelectedCategory from './scripts/components/productsSelectedCategory.js';
 import { storeDataProduct } from './scripts/store/store.js';

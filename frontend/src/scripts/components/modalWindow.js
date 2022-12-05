@@ -1,10 +1,11 @@
-import "./modal-menu.js";
-import "./modal-button.js";
-import "./modal-description.js";
-import "./modal-products.js";
+import "./modalMenu.js";
+import "./modalButton.js";
+import "./modalDescription.js";
+import "./modalContent.js";
 
-import { storageStateModal } from '../store/store.js';
+import { storageStateModal, storageCustomSandwich } from '../store/store.js';
 import { activityModal } from '../store/actionCreators/activityModal.js';
+import { removeCustomSandwich } from '../store/actionCreators/removeCustomSandwich.js';
 
 export default class ModalWindow extends HTMLElement {
 
@@ -25,8 +26,10 @@ export default class ModalWindow extends HTMLElement {
                 </div>
 
                 <modal-menu id="menuModal"></modal-menu>
-                <modal-button id="modalButtons"></modal-button> 
-                <modal-products id="productContainer"></modal-products>
+                <div>
+                    <modal-button id="modalButtons"></modal-button>
+                </div>
+                <modal-content></modal-content>
 
             </div>`;
 
@@ -52,6 +55,7 @@ export default class ModalWindow extends HTMLElement {
         this.querySelector(`.closeButtonModal`)
             .addEventListener('click', () => {
                 storageStateModal.dispatch(activityModal(false));
+                storageCustomSandwich.dispatch(removeCustomSandwich());
             })
     }
 }

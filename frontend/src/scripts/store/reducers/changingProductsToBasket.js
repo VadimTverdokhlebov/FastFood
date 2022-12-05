@@ -1,4 +1,10 @@
-import { PRODUCT_ADD, PRODUCT_SET_QUANTITY, DELETE_PRODUCT } from '../constants/actionTypes.js';
+import {
+    PRODUCT_ADD,
+    PRODUCT_SET_QUANTITY,
+    DELETE_PRODUCT,
+    ADD_CUSTOM_SANDWICH_TO_BASKET
+} from '../constants/actionTypes.js';
+
 const initialState = [];
 
 export function changingProductsToBasket(state = initialState, action) {
@@ -20,11 +26,18 @@ export function changingProductsToBasket(state = initialState, action) {
                     cloneState.push(action.product);
                 }
             }
-            return  cloneState;
-        
+            return cloneState;
+
         case DELETE_PRODUCT:
 
             return action.product;
+
+        case ADD_CUSTOM_SANDWICH_TO_BASKET:
+
+            return [
+                ...state,
+                action.product
+            ];
 
         default: return state;
     }

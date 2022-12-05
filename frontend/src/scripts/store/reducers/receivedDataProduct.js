@@ -1,8 +1,8 @@
 import { PRODUCT_RECEIVED } from '../constants/actionTypes.js';
 
-const initState = {}
+const initialState = {};
 
-export function receivedDataProduct(state = initState.productData, action) {
+export function receivedDataProduct(state = initialState.productData, action) {
     switch (action.type) {
         case PRODUCT_RECEIVED:
 

@@ -39,5 +39,3 @@ function getCurrentQuantityProduct(productId, basket) {
     }
     return false;
 }
-
-//Array.isArray();
