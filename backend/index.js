@@ -5,13 +5,6 @@ import productsRouter from './routes/productsRouter.js';
 import authRouter from './routes/authRouter.js';
 import config from './config.js';
 
-// separate DB User
-// Router - groups
-
-const PORT = config.port;
-const HOST = config.host;
-const db = config.databaseURL;
-
 const app = express();
 
 app.use(cors());
@@ -25,6 +18,10 @@ startServer();
 connectToDataBase();
 
 async function startServer() {
+
+  const PORT = config.port;
+  const HOST = config.host;
+  
   app.listen(PORT, HOST, (error) => {
     if (error) {
       console.log(error);
@@ -36,10 +33,18 @@ async function startServer() {
 
 async function connectToDataBase() {
 
+  const db = config.databaseURL;
+
+  const optionsDataBase = {
+    authSource: "admin",
+    user: config.databaseUser,
+    pass: config.databasePassword,
+  }
+
   mongoose.set('strictQuery', true);
 
   mongoose
-    .connect(db)
+    .connect(db, optionsDataBase)
     .then(() => {
       console.log('Connected to db');
     })

@@ -1,6 +1,6 @@
 import { User } from '../models/users.js';
 
-export async function checkUser(email) {
+export async function getUser(email) {
 
     return await User.findOne({ email });
 }

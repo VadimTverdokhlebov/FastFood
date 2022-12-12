@@ -1,6 +1,6 @@
 import { validationResult } from 'express-validator';
 import { generateAccessToken } from '../JWT/userTokens.js';
-import { checkUser, createNewUser } from '../db/requests/userRequests.js';
+import { getUser, createNewUser } from '../db/requests/userRequests.js';
 import bcrypt from 'bcrypt';
 
 
@@ -18,7 +18,7 @@ class AuthController {
             const email = req.body.email;
             const password = req.body.email;
 
-            if (await checkUser(email)) {
+            if (await getUser(email)) {
                 return res.status(400).json({ message: 'The user already exist' });
             }
 
@@ -41,7 +41,7 @@ class AuthController {
             const email = req.body.email;
             const password = req.body.email;
 
-            const user = await checkUser(email);
+            const user = await getUser(email);
 
             if (!user) {
                 return res.status(400).json({ message: 'The user not found' });
