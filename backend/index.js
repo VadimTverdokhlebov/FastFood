@@ -1,23 +1,47 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+import mongoose from 'mongoose';
 import express from 'express';
-import serverRouter from './routes/servers.js';
 import cors from 'cors';
-import  './models/users.js';
-import  './db.js';
-import './controllers/authUser.js';
+import productsRouter from './routes/productsRouter.js';
+import authRouter from './routes/authRouter.js';
+import config from './config.js';
+
+// separate DB User
+// Router - groups
+
+const PORT = config.port;
+const HOST = config.host;
+const db = config.databaseURL;
 
 const app = express();
-const PORT = 3000;
-const HOST = 'localhost';
 
 app.use(cors());
-
+app.use(express.json());
 app.use(express.static('public'));
 
-app.use('/api/products', serverRouter);
+app.use('/api', productsRouter);
+app.use('/api/auth', authRouter);
 
-app.listen(PORT, HOST, () => {
-  console.log(`Server listens http://${HOST}:${PORT}`);
+startServer();
+connectToDataBase();
 
-})
+async function startServer() {
+  app.listen(PORT, HOST, (error) => {
+    if (error) {
+      console.log(error);
+      return;
+    }
+    console.log(`Server listens http://${HOST}:${PORT}`);
+  });
+}
+
+async function connectToDataBase() {
+
+  mongoose.set('strictQuery', true);
+
+  mongoose
+    .connect(db)
+    .then(() => {
+      console.log('Connected to db');
+    })
+    .catch((error) => console.log(error));
+}

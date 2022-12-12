@@ -27,7 +27,7 @@ export default class ModalOrder extends HTMLElement {
                 <div class="doneProductContainer">
                     <div class="customSandwichMenu">
                         <div class="customSandwichPreview">
-                            <img class="foodPicture" src="http://localhost:3000/images/sandwiches/beef-club.png">
+                            <img class="foodPicture" src="http://localhost:3000/templates/result_sandwich.jpg">
                         </div>
 
                         <div id="customSandwichContainer">
@@ -46,11 +46,11 @@ export default class ModalOrder extends HTMLElement {
 
                         <div class="foodCounter">
                             <button id="button2${this.customSandwich.id}" type="button">
-                                <img alt="-" src="http://localhost:3000/images/minus.png" class="buttonMinus"/>
+                                <img alt="-" src="http://localhost:3000/templates/minus.png" class="buttonMinus"/>
                             </button>
                                 <input class="quantity" type="text" value="${this.customSandwich.quantity}">
                             <button id="button1${this.customSandwich.id}" type="button">
-                                <img alt="+" src="http://localhost:3000/images/plus.png" class="buttonPlus"/>
+                                <img alt="+" src="http://localhost:3000/templates/plus.png" class="buttonPlus"/>
                             </button>
                         </div>
 

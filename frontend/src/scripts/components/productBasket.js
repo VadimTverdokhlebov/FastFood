@@ -21,7 +21,7 @@ export default class ProductBasket extends HTMLElement {
         let html = /*html*/`
             <div id="basket">
             <div id="basketHead">
-                <img id="basketIcon" src="http://localhost:3000/images/shoppingbasket_83998.png">
+                <img id="basketIcon" src="http://localhost:3000/templates/basket.png">
                 <p id="basketName">Корзина</p>
             </div>
             <div id="basketTitle">

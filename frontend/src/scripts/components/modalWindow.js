@@ -20,7 +20,7 @@ export default class ModalWindow extends HTMLElement {
             <div id="modalContainer">                
                 <div class="modalTop">
                     <button class="closeButtonModal">
-                        <img src="http://localhost:3000/images/vcsconflicting_93497.png" class="buttonRemoveModal"/>
+                        <img src="http://localhost:3000/templates/closeButton.png" class="buttonRemoveModal"/>
                     </button>                            
                     <modal-description></modal-description>
                 </div>

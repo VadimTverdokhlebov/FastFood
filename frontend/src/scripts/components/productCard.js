@@ -45,11 +45,11 @@ export default class ProductCard {
             <div class="foodCounter">
 
                 <button id="btn2${this.elementMenu.id}" type="button">
-                    <img alt="-" src="http://localhost:3000/images/minus.png" class="buttonMinus"/>
+                    <img alt="-" src="http://localhost:3000/templates/minus.png" class="buttonMinus"/>
                 </button>
                     <input class="quantity" type="text" value="${this.#state.quantity}">
                 <button id="btn1${this.elementMenu.id}" type="button">
-                    <img alt="+" src="http://localhost:3000/images/plus.png" class="buttonPlus"/>
+                    <img alt="+" src="http://localhost:3000/templates/plus.png" class="buttonPlus"/>
                 </button>
             </div>
                 
