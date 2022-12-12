@@ -21,7 +21,7 @@ async function startServer() {
 
   const PORT = config.port;
   const HOST = config.host;
-  
+
   app.listen(PORT, HOST, (error) => {
     if (error) {
       console.log(error);
@@ -49,4 +49,11 @@ async function connectToDataBase() {
       console.log('Connected to db');
     })
     .catch((error) => console.log(error));
+
+    // db.createUser(
+    //   {
+    //   user: "Vadim",
+    //   pwd:  "121212",
+    //   roles:[{role: "userAdmin" , db:"Fast_food"}]})
 }
+
