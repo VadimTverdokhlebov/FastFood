@@ -3,7 +3,6 @@ import { generateAccessToken } from '../JWT/userTokens.js';
 import { getUser, createNewUser } from '../db/requests/userRequests.js';
 import bcrypt from 'bcrypt';
 
-
 class AuthController {
 
     async registration(req, res) {
@@ -22,7 +21,7 @@ class AuthController {
                 return res.status(400).json({ message: 'The user already exist' });
             }
 
-            const hashPassword = bcrypt.hashSync(password, 3);
+            const hashPassword = await bcrypt.hash(password, 3);
             const dataUser = { email, password: hashPassword };
 
             await createNewUser(dataUser)
@@ -31,7 +30,7 @@ class AuthController {
 
         } catch (e) {
             console.log(e);
-            res.status(400).json({ message: 'Registration error' })
+            return res.status(400).json({ message: 'Registration error' })
         }
     }
 
@@ -53,7 +52,7 @@ class AuthController {
                 return res.status(400).json({ message: 'Insert incorrect password' });
             }
 
-            const token = generateAccessToken(user._id);
+            const token = generateAccessToken(user._id, user.email);
             return res.json({ token });
 
 
@@ -61,6 +60,16 @@ class AuthController {
             console.log(e);
             res.status(400).json({ message: 'Login error' })
         }
+    }
+
+    async checkLogin(req, res) {
+        try {
+            res.json({ message: 'User authorizatoin' });
+        }
+        catch (e) {
+            console.log(e);
+        }
+
     }
 }
 

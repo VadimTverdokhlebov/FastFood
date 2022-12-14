@@ -14,6 +14,8 @@ app.use(express.static('public'));
 app.use('/api', productsRouter);
 app.use('/api/auth', authRouter);
 
+// errors
+
 startServer();
 connectToDataBase();
 
