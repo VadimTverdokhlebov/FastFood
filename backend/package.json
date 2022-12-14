@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "serve": "nodemon index.js"
+    "serve": "nodemon index.js",
+    "seedAdditives":"node ./db/seeders/seedAdditives.js",
+    "seedProducts":"node ./db/seeders/seedProducts.js"
   },
   "keywords": [],
   "author": "",
