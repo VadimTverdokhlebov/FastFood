@@ -1297,7 +1297,7 @@
         "filling": [
             {
                 "id": "bacon",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Бекон",
                 "description": "(3-4 кусочка)",
                 "price": 35,
@@ -1305,7 +1305,7 @@
             },
             {
                 "id": "bmt",
-                "category": "filling",
+                "category": "fillings",
                 "name": "БМТ",
                 "description": "",
                 "price": 60,
@@ -1313,7 +1313,7 @@
             },
             {
                 "id": "cheese",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Сыр",
                 "description": "(2 треугольника)",
                 "price": 20,
@@ -1321,7 +1321,7 @@
             },
             {
                 "id": "chicken-breast",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Куриная грудка",
                 "description": "",
                 "price": 60,
@@ -1329,7 +1329,7 @@
             },
             {
                 "id": "chicken-teriyaki",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Курица Терияки",
                 "description": "",
                 "price": 65,
@@ -1337,7 +1337,7 @@
             },
             {
                 "id": "ham",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Ветчина",
                 "description": "(4 кусочка)",
                 "price": 45,
@@ -1345,7 +1345,7 @@
             },
             {
                 "id": "melt",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Мелт",
                 "description": "",
                 "price": 70,
@@ -1353,7 +1353,7 @@
             },
             {
                 "id": "moc",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Моцарелла",
                 "description": "(1 скуп)",
                 "price": 20,
@@ -1361,7 +1361,7 @@
             },
             {
                 "id": "mushrooms",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Грибы",
                 "description": "(2 скупа)",
                 "price": 50,
@@ -1369,7 +1369,7 @@
             },
             {
                 "id": "omelet",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Омлет",
                 "description": "",
                 "price": 50,
@@ -1377,7 +1377,7 @@
             },
             {
                 "id": "pepperoni",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Пепперони",
                 "description": "(3 кусочка)",
                 "price": 40,
@@ -1385,7 +1385,7 @@
             },
             {
                 "id": "pork-bbq",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Свинина Барбекю",
                 "description": "",
                 "price": 65,
@@ -1393,7 +1393,7 @@
             },
             {
                 "id": "roast",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Ростбиф",
                 "description": "(2-3 кусочка)",
                 "price": 55,
@@ -1401,7 +1401,7 @@
             },
             {
                 "id": "salami",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Салями",
                 "description": "(4 кусочка)",
                 "price": 40,
@@ -1409,7 +1409,7 @@
             },
             {
                 "id": "seafood",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Морепродукты",
                 "description": "(2 скупа)",
                 "price": 45,
@@ -1417,7 +1417,7 @@
             },
             {
                 "id": "spicy-italian",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Острый итальянский",
                 "description": "",
                 "price": 60,
@@ -1425,7 +1425,7 @@
             },
             {
                 "id": "subway-club",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Сабвэй Клаб",
                 "description": "",
                 "price": 70,
@@ -1433,7 +1433,7 @@
             },
             {
                 "id": "tuna",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Тунец",
                 "description": "(2 скупа)",
                 "price": 55,
@@ -1441,7 +1441,7 @@
             },
             {
                 "id": "turkey",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Индейка",
                 "description": "(3 кусочка)",
                 "price": 45,
@@ -1449,7 +1449,7 @@
             },
             {
                 "id": "turkey-ham",
-                "category": "filling",
+                "category": "fillings",
                 "name": "Индейка и ветчина",
                 "description": "(2/2 кусочка)",
                 "price": 45,
@@ -1459,14 +1459,14 @@
         "size": [
             {
                 "id": "1x",
-                "category": "size",
+                "category": "sizes",
                 "name": "15 См",
                 "price": 0,
                 "image": "images/sizes/1x.jpg"
             },
             {
                 "id": "2x",
-                "category": "size",
+                "category": "sizes",
                 "name": "30 См",
                 "price": 110,
                 "image": "images/sizes/2x.jpg"
@@ -1475,7 +1475,7 @@
         "bread": [
             {
                 "id": "white-italian",
-                "category": "bread",
+                "category": "breads",
                 "name": "Белый итальянский",
                 "description": "",
                 "price": 0,
@@ -1483,7 +1483,7 @@
             },
             {
                 "id": "white-sesame",
-                "category": "bread",
+                "category": "breads",
                 "name": "Белый с кунжутом",
                 "description": "",
                 "price": 0,
@@ -1491,7 +1491,7 @@
             },
             {
                 "id": "oregano-parmesan",
-                "category": "bread",
+                "category": "breads",
                 "name": "Орегано-пармезан",
                 "description": "",
                 "price": 0,
@@ -1499,7 +1499,7 @@
             },
             {
                 "id": "grey",
-                "category": "bread",
+                "category": "breads",
                 "name": "Серый",
                 "description": "",
                 "price": 0,
@@ -1507,7 +1507,7 @@
             },
             {
                 "id": "grey-with-cereal",
-                "category": "bread",
+                "category": "breads",
                 "name": "Серый с овсяными хлопьями",
                 "description": "",
                 "price": 0,
@@ -1517,7 +1517,7 @@
         "vegetable": [
             {
                 "id": "pekinka",
-                "category": "vegetable",
+                "category": "vegetables",
                 "name": "Пекинская капуста",
                 "description": "",
                 "price": 0,
@@ -1525,7 +1525,7 @@
             },
             {
                 "id": "tomato",
-                "category": "vegetable",
+                "category": "vegetables",
                 "name": "Помидор",
                 "description": "",
                 "price": 0,
@@ -1533,7 +1533,7 @@
             },
             {
                 "id": "pickled-cucumber",
-                "category": "vegetable",
+                "category": "vegetables",
                 "name": "Соленый огурец",
                 "description": "",
                 "price": 0,
@@ -1541,7 +1541,7 @@
             },
             {
                 "id": "onion-purple",
-                "category": "vegetable",
+                "category": "vegetables",
                 "name": "Красный лук",
                 "description": "",
                 "price": 0,
@@ -1549,7 +1549,7 @@
             },
             {
                 "id": "green-peppers-bulgarian",
-                "category": "vegetable",
+                "category": "vegetables",
                 "name": "Болгарский перец",
                 "description": "",
                 "price": 0,
@@ -1557,7 +1557,7 @@
             },
             {
                 "id": "olives",
-                "category": "vegetable",
+                "category": "vegetables",
                 "name": "Маслины",
                 "description": "",
                 "price": 0,
@@ -1565,7 +1565,7 @@
             },
             {
                 "id": "pepper-hapapeno",
-                "category": "vegetable",
+                "category": "vegetables",
                 "name": "Острый перец Халапеньо",
                 "description": "",
                 "price": 0,
@@ -1575,7 +1575,7 @@
         "sauce": [
             {
                 "id": "1000-islands",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "1000 Островов",
                 "description": "",
                 "price": 0,
@@ -1583,7 +1583,7 @@
             },
             {
                 "id": "bbq",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Барбекю",
                 "description": "",
                 "price": 0,
@@ -1591,7 +1591,7 @@
             },
             {
                 "id": "cheese",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Сырный",
                 "description": "",
                 "price": 0,
@@ -1599,7 +1599,7 @@
             },
             {
                 "id": "chipotle",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Чиппотл",
                 "description": "",
                 "price": 0,
@@ -1607,7 +1607,7 @@
             },
             {
                 "id": "garlic",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Чесночный",
                 "description": "",
                 "price": 0,
@@ -1615,7 +1615,7 @@
             },
             {
                 "id": "mayonnaise",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Майонез",
                 "description": "",
                 "price": 0,
@@ -1623,7 +1623,7 @@
             },
             {
                 "id": "mustard",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Горчица",
                 "description": "",
                 "price": 0,
@@ -1631,7 +1631,7 @@
             },
             {
                 "id": "mustard-and-honey",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Горчица медовая",
                 "description": "",
                 "price": 0,
@@ -1639,7 +1639,7 @@
             },
             {
                 "id": "olive-oil",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Оливковое масло",
                 "description": "",
                 "price": 0,
@@ -1647,7 +1647,7 @@
             },
             {
                 "id": "spicy-ketchup",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Острый кетчуп",
                 "description": "",
                 "price": 0,
@@ -1655,7 +1655,7 @@
             },
             {
                 "id": "sweet-and-sour",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Кисло-сладкий",
                 "description": "",
                 "price": 0,
@@ -1663,7 +1663,7 @@
             },
             {
                 "id": "sweet-onion",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Сладкий лук",
                 "description": "",
                 "price": 0,
@@ -1671,7 +1671,7 @@
             },
             {
                 "id": "wine-vinegar",
-                "category": "sauce",
+                "category": "sauses",
                 "name": "Винный уксус",
                 "description": "",
                 "price": 0,
