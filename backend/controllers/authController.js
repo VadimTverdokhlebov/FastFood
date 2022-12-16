@@ -24,9 +24,12 @@ class AuthController {
             const hashPassword = await bcrypt.hash(password, 3);
             const dataUser = { email, password: hashPassword };
 
-            await createNewUser(dataUser)
+            await createNewUser(dataUser);
+            const user = await getUser(email);
+            const token = generateAccessToken(user._id, user.email);
 
-            return res.json({ message: 'The user has been successfully registered' });
+            return res.json({ message: 'The user has been successfully registered', token });
+
 
         } catch (e) {
             console.log(e);
