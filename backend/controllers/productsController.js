@@ -1,9 +1,15 @@
-import fs from 'fs';
+import { getAdditives, getMenu } from "../db/requests/productRequests.js";
 
-export function getProduct(req, res) {
+export async function getProduct(req, res) {
 
-    const dataProduct = fs.readFileSync('./db/seeders/data.json');
-    const product = JSON.parse(dataProduct);
-    
-    return res.json(product);
+
+    const menu = await getMenu();
+    const additives = await getAdditives();
+
+    const products = {
+        menu: menu,
+        additives: additives
+    }
+
+    return res.json(products);
 }
