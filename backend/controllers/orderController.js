@@ -22,7 +22,7 @@ class OrderController {
             for (let product of products) {
 
                 let currentProduct = await getProduct(product.id);
-                
+
                 order.sum += Number(product.amount) * Number(currentProduct.price);
 
                 order.products.push({
@@ -33,7 +33,7 @@ class OrderController {
 
                 for (let id of product.additives) {
 
-                    let currentAdditive = await getProduct(id);
+                    let currentAdditive = await getAdditive(id);
 
                     order.sum += Number(product.amount) * Number(currentAdditive .price); 
 
