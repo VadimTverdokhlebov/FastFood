@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
-// import { additiveSchema } from './additive.js';
 
-const productSchema = new mongoose.Schema({
+export const productSchema = new mongoose.Schema({
     name: {
         type: String,
         require: true,

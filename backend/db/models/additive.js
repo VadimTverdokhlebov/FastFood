@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const additiveSchema = new mongoose.Schema({
+export const additiveSchema = new mongoose.Schema({
     name: {
         type: String,
         unique: true,

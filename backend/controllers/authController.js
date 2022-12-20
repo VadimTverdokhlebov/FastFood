@@ -68,6 +68,7 @@ class AuthController {
     async checkLogin(req, res) {
         try {
             res.json({ message: 'User authorizatoin' });
+            console.log(req.user);
         }
         catch (e) {
             console.log(e);
