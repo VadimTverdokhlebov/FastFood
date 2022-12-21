@@ -24,20 +24,14 @@ export default class ModalContent extends HTMLElement {
         if (this.stateModal.selectCategory != 'sandwichDone') {
 
             this.innerHTML = /*html*/`<div id="productContainer"></div>`;
-
-            const root = productContainer;
             
-            for (let category in this.additives) {
-                if (this.stateModal.selectCategory == category) {
-                    for (let additive of this.additives[category]) {
-                        if (productContainer) {
-                            new ModalProductCard(additive, root)
-                        }
-                    }
-                    break;
+            const root = productContainer;
+
+            for (let additive of this.additives) {
+                if (this.stateModal.selectCategory == additive.category && productContainer) {
+                    new ModalProductCard(additive, root);
                 }
             }
-
         } else {
 
             this.innerHTML = /*html*/`

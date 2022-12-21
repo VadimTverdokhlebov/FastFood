@@ -32,11 +32,11 @@ export default class ModalOrder extends HTMLElement {
 
                         <div id="customSandwichContainer">
                             <p id="yourSandwichIsDone">Ваш сендвич готов!</p>
-                            <p>Размер: ${this.getAdditivesCategorySandwich('size', additives)}</p>
-                            <p>Хлеб: ${this.getAdditivesCategorySandwich('bread', additives)}</p>
-                            <p>Овощи: ${this.getAdditivesCategorySandwich('vegetable', additives)}</p>
-                            <p>Соусы: ${this.getAdditivesCategorySandwich('sauce', additives)}</p>
-                            <p>Начинка: ${this.getAdditivesCategorySandwich('filling', additives)}</p>
+                            <p>Размер: ${this.getAdditivesCategorySandwich('sizes', additives)}</p>
+                            <p>Хлеб: ${this.getAdditivesCategorySandwich('breads', additives)}</p>
+                            <p>Овощи: ${this.getAdditivesCategorySandwich('vegetables', additives)}</p>
+                            <p>Соусы: ${this.getAdditivesCategorySandwich('sauses', additives)}</p>
+                            <p>Начинка: ${this.getAdditivesCategorySandwich('fillings', additives)}</p>
                         </div>
                     </div>
                 

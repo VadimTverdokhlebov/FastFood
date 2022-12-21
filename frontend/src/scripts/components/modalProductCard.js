@@ -11,7 +11,7 @@ export default class ModalProductCard {
         this.#root = root;
 
         this.innerDiv = document.createElement('div');
-        this.innerDiv.id = `#innerDiv${this.#additive.id}`;
+        this.innerDiv.id = `#innerDiv${this.#additive._id}`;
 
         this.#root.prepend(this.innerDiv);
 
@@ -42,14 +42,14 @@ export default class ModalProductCard {
         this.checkAdditivesSandwich();
 
         this.innerDiv.addEventListener('click', () => {
-            storageCustomSandwich.dispatch(addAdditives(this.#additive.id, this.#additive.category));
+            storageCustomSandwich.dispatch(addAdditives(this.#additive._id, this.#additive.category));
         })
     }
 
     checkAdditivesSandwich() {
         const additivesCustomSandwich = storageCustomSandwich.getState().additives;
         for (let additive of additivesCustomSandwich) {
-            if (additive.id == this.#additive.id) {
+            if (additive._id == this.#additive._id) {
                 return true;
             }
         }

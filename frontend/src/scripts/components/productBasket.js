@@ -38,7 +38,7 @@ export default class ProductBasket extends HTMLElement {
                 <div class="basketProduct" id="positionProductInBasket${product.id}">
 
                 <button type="button"  class="buttonRemove" id="idProductInBasket${product.id}">
-                    <img src="http://localhost:3000/images/vcsconflicting_93497.png" class="buttonDelete"/>
+                    <img src="http://localhost:3000/templates/closeButton.png" class="buttonDelete"/>
                 </button>
                 
                 <p>${product.name}</p>

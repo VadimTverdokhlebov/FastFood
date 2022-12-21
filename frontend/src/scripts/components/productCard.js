@@ -17,7 +17,7 @@ export default class ProductCard {
         this.elementMenu = elementMenu;
 
         this.innerDiv = document.createElement('div');
-        this.innerDiv.id = `#innerDiv${this.elementMenu.id}`;
+        this.innerDiv.id = `#innerDiv${this.elementMenu._id}`;
 
         this.root.prepend(this.innerDiv);
 
@@ -44,16 +44,16 @@ export default class ProductCard {
         <form class="formAddBasket" id="addBasket" method="POST">
             <div class="foodCounter">
 
-                <button id="btn2${this.elementMenu.id}" type="button">
+                <button id="btn2${this.elementMenu._id}" type="button">
                     <img alt="-" src="http://localhost:3000/templates/minus.png" class="buttonMinus"/>
                 </button>
                     <input class="quantity" type="text" value="${this.#state.quantity}">
-                <button id="btn1${this.elementMenu.id}" type="button">
+                <button id="btn1${this.elementMenu._id}" type="button">
                     <img alt="+" src="http://localhost:3000/templates/plus.png" class="buttonPlus"/>
                 </button>
             </div>
                 
-                <input class="buttonBuy" id="buttonId${this.elementMenu.id}" type="button" value = "В КОРЗИНУ">
+                <input class="buttonBuy" id="buttonId${this.elementMenu._id}" type="button" value = "В КОРЗИНУ">
         </form>
         </div>`
 
@@ -63,11 +63,11 @@ export default class ProductCard {
     }
 
     buttonToBaskedAddEventListener() {
-        this.innerDiv.querySelector(`#buttonId${this.elementMenu.id}`)
+        this.innerDiv.querySelector(`#buttonId${this.elementMenu._id}`)
             .addEventListener('click', () => {
                 if (this.elementMenu.category == 'sandwiches') {
 
-                    const id = this.elementMenu.id;
+                    const id = this.elementMenu._id;
                     const quantity = this.#state.quantity;
                     const activity = true;
 
@@ -76,7 +76,7 @@ export default class ProductCard {
             
                 } else {
 
-                    const id = this.elementMenu.id;
+                    const id = this.elementMenu._id;
                     const quantity = this.#state.quantity;
                     const name = this.elementMenu.name;
 
@@ -87,10 +87,10 @@ export default class ProductCard {
 
     buttonsAddEventListener() {
         
-        this.innerDiv.querySelector(`#btn1${this.elementMenu.id}`)
+        this.innerDiv.querySelector(`#btn1${this.elementMenu._id}`)
             .addEventListener("click", this.increment.bind(this));
 
-        this.innerDiv.querySelector(`#btn2${this.elementMenu.id}`)
+        this.innerDiv.querySelector(`#btn2${this.elementMenu._id}`)
             .addEventListener("click", this.decrement.bind(this));
     }
 

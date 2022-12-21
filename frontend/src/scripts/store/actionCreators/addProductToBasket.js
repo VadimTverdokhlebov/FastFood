@@ -6,11 +6,11 @@ export function addProduct(productId, quantity) {
     const basket = storageBasket.getState();
     const menu = storeDataProduct.getState().menu;
 
-    const productBase = menu.find(product => product.id == productId)
+    const productBase = menu.find(product => product._id == productId)
     const currentQuantity = getCurrentQuantityProduct(productId, basket);
     
     const product = {
-        id: productBase.id, 
+        id: productBase._id, 
         price: productBase.price, 
         name: productBase.name
     };

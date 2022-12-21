@@ -3,27 +3,27 @@ import { CHANGE_CATEGORY_MODAL, SHOW_MODAL, REMOVE_MODAL } from '../constants/ac
 const initialState = {
     categoriesMenu: [
         {
-            id: "size",
+            id: "sizes",
             name: "Размер",
             description: "Выберите размер сендвича",
         },
         {
-            id: "bread",
+            id: "breads",
             name: "Хлеб",
             description: "Хлеб для сендвича на выбор",
         },
         {
-            id: "vegetable",
+            id: "vegetables",
             name: "Овощи",
             description: "Дополнительные овощи бесплатно",
         },
         {
-            id: "sauce",
+            id: "sauses",
             name: "Соусы",
             description: "Выберите 3 бесплатных соуса по вкусу",
         },
         {
-            id: "filling",
+            id: "fillings",
             name: "Начинка",
             description: "Добавьте начинку по вкусу",
         },
@@ -33,7 +33,7 @@ const initialState = {
             description: "Проверьте и добавьте в корзину",
         },
     ],
-    selectCategory: 'size',
+    selectCategory: 'sizes',
     description: 'Выберите размер сендвича',
     activity: false,
 };

@@ -13,14 +13,14 @@ const initialState = {
     quantity: 1,
     additives: [
         {
-            id: "1x",
-            category: "size",
+            _id: "639c7d92bc461129b75fa53e",
+            category: "sizes",
             name: "15 См",
             price: 0,
         },
         {
-            id: "white-italian",
-            category: "bread",
+            _id: "639c7d92bc461129b75fa542",
+            category: "breads",
             name: "Белый итальянский",
             price: 0,
         }]
