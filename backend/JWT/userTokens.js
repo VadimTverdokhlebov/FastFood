@@ -1,19 +1,18 @@
-import config from '../config.js';
 import jwt from 'jsonwebtoken';
+import config from '../config.js';
 
 export function generateAccessToken(id, email) {
+  const { secretKey } = config.user;
 
-    const secretKey = config.user.secretKey;
+  const payload = {
+    id,
+    email,
+  };
 
-    const payload = {
-        id,
-        email,
-    }
-
-    return jwt.sign(payload, secretKey, { expiresIn: '24h' });
+  return jwt.sign(payload, secretKey, { expiresIn: '24h' });
 }
 
 export function getUserId(token) {
-    const decodetData = jwt.verify(token, config.user.secretKey);
-    return decodetData.id;
+  const decodetData = jwt.verify(token, config.user.secretKey);
+  return decodetData.id;
 }

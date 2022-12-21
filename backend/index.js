@@ -2,26 +2,26 @@ import express from 'express';
 import cors from 'cors';
 import productsRouter from './routes/productsRouter.js';
 import connectToDataBase from './db/connectToDataBase.js';
-import orderRouter from './routes/orderRouter.js'
+import orderRouter from './routes/orderRouter.js';
 import authRouter from './routes/authRouter.js';
 import config from './config.js';
 
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-app.use(express.static('public'));
-
-app.use('/api', orderRouter);
-app.use('/api', productsRouter);
-app.use('/api/auth', authRouter);
-
-// errors
-
-startServer();
-connectToDataBase();
+// cookies
+// eslint airbnb config
+// hash password
+// check login user generte errors 403
+// qwery get products and get additives
 
 async function startServer() {
+  const app = express();
+
+  app.use(cors());
+  app.use(express.json());
+  app.use(express.static('public'));
+
+  app.use('/api', orderRouter);
+  app.use('/api', productsRouter);
+  app.use('/api/auth', authRouter);
 
   const PORT = config.port;
   const HOST = config.host;
@@ -34,3 +34,6 @@ async function startServer() {
     console.log(`Server listens http://${HOST}:${PORT}`);
   });
 }
+
+connectToDataBase()
+  .then(() => startServer());

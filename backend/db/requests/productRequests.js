@@ -1,22 +1,18 @@
-import { Product } from '../models/products.js';
-import { Additive } from '../models/additive.js';
+import Product from '../models/products.js';
+import Additive from '../models/additive.js';
 
-export async function getMenu() {
-
-    return await Product.find().all('products', []);
+export function getMenu() {
+  return Product.find().all('products', []);
 }
 
-export async function getAllAdditives() {
-
-    return await Additive.find().all('additives', []);
+export function getAllAdditives() {
+  return Additive.find().all('additives', []);
 }
 
-export async function getAdditive(id) {
-
-    return await Additive.findOne({ id });
+export function getAdditive(id) {
+  return Additive.findOne({ id });
 }
 
-export async function getProduct(id) {
-
-    return await Product.findOne({ id });
+export function getProduct(id) {
+  return Product.findOne({ id });
 }

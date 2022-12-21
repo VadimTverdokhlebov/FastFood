@@ -1,13 +1,11 @@
-import { User } from '../models/users.js';
+import User from '../models/users.js';
 
-export async function getUser(email) {
-
-    return await User.findOne({ email });
+export function getUser(email) {
+  return User.findOne({ email });
 }
 
 export async function createNewUser(dataUser) {
+  const user = new User(dataUser);
 
-    const user = new User(dataUser);
-            
-    await user.save();
+  await user.save();
 }
