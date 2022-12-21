@@ -1,40 +1,33 @@
-import './index.html';
 import './style/main.css';
-import './scripts/components/button-product.js';
-import './scripts/components/main-menu.js';
-import './scripts/components/product-basket.js';
-import './scripts/components/product-card.js'
-import './scripts/api/getjson.js';
-import pubSub from './scripts/PubSub.js';
-import { mainJson } from './scripts/storage/store.js';
-import ProductCard from './scripts/components/product-card.js';
+import './index.html';
+import './scripts/components/modalWindow.js';
+import './scripts/components/productBasket.js';
+import './scripts/components/mainMenu.js';
+import { productReceived } from './scripts/store/actionCreators/productReceived.js';
+import ProductsSelectedCategory from './scripts/components/productsSelectedCategory.js';
+import { storeDataProduct } from './scripts/store/store.js';
+import { getDataProduct } from './scripts/api/getDataProduct.js';
 
 main();
 
 function main() {
 
-    pubSub.subscribe("getJson", menu => {
+    uploadDataProductToStore();
+
+    showProductCards();
+
+}
+
+function showProductCards() {
+    storeDataProduct.subscribe(() => {
         const defaultCategory = 'sandwiches';
-        showProductCards(menu, defaultCategory);
-    });
-
-    pubSub.subscribe("addProductToBasket", data => {
-        console.log(data);
-    });
-
-    pubSub.subscribe("changeCategory", category => {
-        showProductCards(mainJson.menu, category);
+        new ProductsSelectedCategory(defaultCategory);
     });
 }
 
-function showProductCards(menu, categoryId) {
-    const root = content;
-    for (let elementMenu of menu) {
-        if (elementMenu.category === categoryId) {
-            elementMenu.quantity = 1;
-            new ProductCard(root, elementMenu);
-        }
-    }
+async function uploadDataProductToStore() {
+
+    const dataProduct = await getDataProduct();
+
+    storeDataProduct.dispatch(productReceived(dataProduct));
 }
-
-
