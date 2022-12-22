@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt';
 import { generateAccessToken } from '../JWT/userTokens.js';
 import { getUser, createNewUser } from '../db/requests/userRequests.js';
 
-class AuthController {
-  async registration(req, res) {
+export default class AuthController {
+  static async registration(req, res) {
     try {
       const errors = validationResult(req);
 
@@ -32,7 +32,7 @@ class AuthController {
     }
   }
 
-  async login(req, res) {
+  static async login(req, res) {
     try {
       const { email, password } = req.body;
 
@@ -52,11 +52,11 @@ class AuthController {
       return res.json({ token });
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: 'Login error' });
+      return res.status(400).json({ message: 'Login error' });
     }
   }
 
-  async checkLogin(req, res) {
+  static async checkLogin(req, res) {
     try {
       res.json({ message: 'User authorizatoin' });
       console.log(req.user);
@@ -65,5 +65,3 @@ class AuthController {
     }
   }
 }
-
-export default new AuthController();

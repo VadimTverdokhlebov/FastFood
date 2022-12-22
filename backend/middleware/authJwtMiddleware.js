@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import config from '../config.js';
 
-export default function (req, res, next) {
+export default function authJwtMiddleware(req, res, next) {
   if (req.method === 'OPTIONS') {
     next();
   }
@@ -14,7 +14,7 @@ export default function (req, res, next) {
 
     const decodetData = jwt.verify(token, config.user.secretKey);
     req.user = decodetData;
-    next();
+    return next();
   } catch (e) {
     console.error(e);
     return res.status(403).json({ message: 'User is not login' });

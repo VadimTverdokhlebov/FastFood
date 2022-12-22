@@ -1,12 +1,14 @@
 import mongoose from 'mongoose';
-import { getProduct, getAdditive } from '../db/requests/productRequests.js';
+import { getMenu, getAllAdditives } from '../db/requests/productRequests.js';
 import { createOrder, getOrders } from '../db/requests/orderRequests.js';
 
-class OrderController {
-  async addOrder(req, res) {
+export default class OrderController {
+  static async addOrder(req, res) {
     try {
       const userId = req.user.id;
       const { products } = req.body;
+      const menu = await getMenu();
+      const allAdditives = await getAllAdditives();
       let indexProductOrder = 0;
 
       const order = {
@@ -17,7 +19,7 @@ class OrderController {
       };
 
       for (const product of products) {
-        const currentProduct = await getProduct(product.id);
+        const currentProduct = menu.find((elem) => elem.id === product.id);
 
         order.sum += Number(product.amount) * Number(currentProduct.price);
 
@@ -27,13 +29,13 @@ class OrderController {
           additives: [],
         });
 
-        for (const id of product.additives) {
-          const currentAdditive = await getAdditive(id);
+        for (const additiveId of product.additives) {
+          const currentAdditive = allAdditives.find((elem) => elem.id === additiveId);
 
           order.sum += Number(product.amount) * Number(currentAdditive.price);
 
           order.products[indexProductOrder].additives.push({
-            additive: mongoose.Types.ObjectId(id),
+            additive: mongoose.Types.ObjectId(additiveId),
           });
         }
 
@@ -42,14 +44,14 @@ class OrderController {
 
       await createOrder(order);
 
-      return res.json({ message: 'The order added', order });
+      return res.json({ message: 'The order added' });
     } catch (e) {
       console.log(e);
       return res.json({ message: 'The order not added' });
     }
   }
 
-  async getOrders(req, res) {
+  static async getOrders(req, res) {
     try {
       const userId = req.user.id;
       const orders = await getOrders(userId);
@@ -60,5 +62,3 @@ class OrderController {
     }
   }
 }
-
-export default new OrderController();

@@ -6,11 +6,8 @@ import orderRouter from './routes/orderRouter.js';
 import authRouter from './routes/authRouter.js';
 import config from './config.js';
 
-// cookies
-// eslint airbnb config
 // hash password
 // check login user generte errors 403
-// qwery get products and get additives
 
 async function startServer() {
   const app = express();
