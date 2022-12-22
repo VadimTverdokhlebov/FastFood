@@ -4,11 +4,11 @@ import { fileURLToPath } from 'url';
 import Additive from '../models/additive.js';
 import connectToDataBase from '../connectToDataBase.js';
 
-const dir = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 async function seedAdditives() {
   try {
-    const dataProduct = fs.readFileSync(path.resolve(dir, 'data.json'));
+    const dataProduct = fs.readFileSync(path.resolve(__dirname, 'data.json'));
     const product = JSON.parse(dataProduct);
 
     for (const category in product.additives) {

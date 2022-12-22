@@ -4,11 +4,11 @@ import { fileURLToPath } from 'url';
 import Product from '../models/products.js';
 import connectToDataBase from '../connectToDataBase.js';
 
-const dir = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 async function seedAdditives() {
   try {
-    const data = fs.readFileSync(path.resolve(dir, 'data.json'));
+    const data = fs.readFileSync(path.resolve(__dirname, 'data.json'));
     const products = JSON.parse(data);
 
     for (const product of products.menu) {
