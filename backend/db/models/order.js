@@ -24,12 +24,16 @@ const orderSchema = new Schema({
         type: Number,
         require: true,
       },
+      sum: {
+        type: Number,
+        require: true,
+      },
     })],
   status: {
     type: Boolean,
     require: true,
   },
-  sum: {
+  sumOrder: {
     type: Number,
     require: true,
   },

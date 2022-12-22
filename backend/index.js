@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import productsRouter from './routes/productsRouter.js';
 import connectToDataBase from './db/connectToDataBase.js';
+import searchRouter from './routes/searchRouter.js';
 import orderRouter from './routes/orderRouter.js';
 import authRouter from './routes/authRouter.js';
 import config from './config.js';
@@ -10,14 +11,21 @@ import config from './config.js';
 // check login user generte errors 403
 
 async function startServer() {
+  const corsOptions = {
+    origin: 'http://localhost:8080',
+    credentials: true,
+    optionSuccessStatus: 200,
+  };
+
   const app = express();
 
-  app.use(cors());
+  app.use(cors(corsOptions));
   app.use(express.json());
   app.use(express.static('public'));
 
   app.use('/api', orderRouter);
   app.use('/api', productsRouter);
+  app.use('/api', searchRouter);
   app.use('/api/auth', authRouter);
 
   const PORT = config.port;
