@@ -57,8 +57,9 @@ export default class OrderController {
     try {
       const userId = req.user.id;
       const orders = await getOrders(userId);
+      const sumAllOrders = orders.reduce((sum, current) => sum + current.sumOrder, 0);
 
-      return res.json({ message: 'The list of orders is loaded', orders });
+      return res.json({ message: 'The list of orders is loaded', orders, sumAllOrders });
     } catch (e) {
       return res.json({ message: 'Failed to load order list' });
     }
