@@ -8,3 +8,7 @@ export function getProducts() {
 export function getAdditives() {
   return Additive.find().all('additives', []);
 }
+
+export function getFoundProducts(regexp) {
+  return Product.find({ name: regexp });
+}
