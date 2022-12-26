@@ -6,7 +6,7 @@ export async function createOrder(dataOrder) {
   await order.save();
 }
 
-export async function getOrders(userId) {
+export async function getUserOrders(userId) {
   const orders = await Order.find({ user: userId })
     .populate('products.product').populate('products.additives.additive');
 

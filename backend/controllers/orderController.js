@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { getProducts, getAdditives } from '../db/requests/productRequests.js';
-import { createOrder, getOrders } from '../db/requests/orderRequests.js';
+import { createOrder, getUserOrders } from '../db/requests/orderRequests.js';
 import Order from '../db/models/order.js';
 
 export default class OrderController {
@@ -57,7 +57,7 @@ export default class OrderController {
   static async getOrders(req, res) {
     try {
       const userId = req.user.id;
-      const allOrders = await getOrders(userId);
+      const allOrders = await getUserOrders(userId);
       const { limit, page } = req.query || 1;
       const query = { user: userId };
       const sumAllOrders = allOrders.reduce((sum, current) => sum + current.sumOrder, 0);
