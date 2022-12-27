@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { getProducts, getAdditives } from '../db/requests/productRequests.js';
-import { createOrder, getUserOrders } from '../db/requests/orderRequests.js';
+import { createOrder } from '../db/requests/orderRequests.js';
 import Order from '../db/models/order.js';
 
 export default class OrderController {
@@ -57,10 +57,11 @@ export default class OrderController {
   static async getOrders(req, res) {
     try {
       const userId = req.user.id;
-      const allOrders = await getUserOrders(userId);
-      const { limit, page } = req.query || 1;
+      const limit = req.query.limit || 1;
+      const page = req.query.page || 1;
+
       const query = { user: userId };
-      const sumAllOrders = allOrders.reduce((sum, current) => sum + current.sumOrder, 0);
+
       const options = {
         populate: 'products.product products.additives.additive',
         page,
@@ -68,7 +69,10 @@ export default class OrderController {
       };
 
       const orders = await Order.paginate(query, options);
-      return res.json({ orders: orders.docs, sumAllOrders });
+
+      const sumAllOrders = orders.docs.reduce((sum, current) => sum + current.sumOrder, 0);
+
+      return res.json({ orders, sumAllOrders });
     } catch (e) {
       return res.json({ message: 'Failed to load order list' });
     }
