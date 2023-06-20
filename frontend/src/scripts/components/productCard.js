@@ -1,5 +1,5 @@
-import { storageBasket, storageStateModal, storageCustomSandwich } from '../store/store.js';
-import { addProduct } from '../store/actionCreators/addProductToBasket.js';
+import { storageCart, storageStateModal, storageCustomSandwich } from '../store/store.js';
+import { addProduct } from '../store/actionCreators/addProductToCart.js';
 import { activityModal } from '../store/actionCreators/activityModal.js';
 import { addSelectedSandwich } from '../store/actionCreators/addSelectedSandwich.js';
 
@@ -41,7 +41,7 @@ export default class ProductCard {
         <p class="foodPrice">Цена: ${this.elementMenu.price} руб.</p>
         <p class="foodCount">КОЛИЧЕСТВО</p>
 
-        <form class="formAddBasket" id="addBasket" method="POST">
+        <form class="formAddCart" id="addCart" method="POST">
             <div class="foodCounter">
 
                 <button id="btn2${this.elementMenu._id}" type="button">
@@ -80,7 +80,7 @@ export default class ProductCard {
                     const quantity = this.#state.quantity;
                     const name = this.elementMenu.name;
 
-                    storageBasket.dispatch(addProduct(id, quantity, name));
+                    storageCart.dispatch(addProduct(id, quantity, name));
                 }
             })
     }

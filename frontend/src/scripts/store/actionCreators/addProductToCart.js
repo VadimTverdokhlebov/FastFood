@@ -1,13 +1,13 @@
 import { PRODUCT_ADD, PRODUCT_SET_QUANTITY } from '../constants/actionTypes.js';
-import { storageBasket, storeDataProduct } from '../store.js';
+import { storageCart, storeDataProduct } from '../store.js';
 
 export function addProduct(productId, quantity) {
 
-    const basket = storageBasket.getState();
+    const cart = storageCart.getState();
     const menu = storeDataProduct.getState().menu;
 
     const productBase = menu.find(product => product._id == productId)
-    const currentQuantity = getCurrentQuantityProduct(productId, basket);
+    const currentQuantity = getCurrentQuantityProduct(productId, cart);
     
     const product = {
         id: productBase._id, 
@@ -31,8 +31,8 @@ export function addProduct(productId, quantity) {
     };
 }
 
-function getCurrentQuantityProduct(productId, basket) {
-    for (let product of basket) {
+function getCurrentQuantityProduct(productId, cart) {
+    for (let product of cart) {
         if (productId == product.id) {
             return product.quantity;
         }

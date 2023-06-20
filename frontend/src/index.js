@@ -1,7 +1,7 @@
 import './style/main.css';
 import './index.html';
 import './scripts/components/modal/modalWindow.js';
-import './scripts/components/productBasket.js';
+import './scripts/components/productCart.js';
 import './scripts/components/mainMenu.js';
 import { productReceived } from './scripts/store/actionCreators/productReceived.js';
 import ProductsCurrentCategory from './scripts/components/productsCurrentCategory.js';

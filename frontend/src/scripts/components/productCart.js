@@ -1,14 +1,14 @@
-import { storageBasket } from '../store/store.js';
+import { storageCart } from '../store/store.js';
 import { deleteProduct } from '../store/actionCreators/deleteProduct.js';
 
-export default class ProductBasket extends HTMLElement {
+export default class ProductCart extends HTMLElement {
     constructor() {
         super();
-        this.basket = storageBasket.getState();
+        this.cart = storageCart.getState();
         this.render();
 
-        storageBasket.subscribe(() => {
-            this.basket = storageBasket.getState();
+        storageCart.subscribe(() => {
+            this.cart = storageCart.getState();
             this.render();
         });
 
@@ -19,25 +19,25 @@ export default class ProductBasket extends HTMLElement {
         let sumOrder = 0;
 
         let html = /*html*/`
-            <div id="basket">
-            <div id="basketHead">
-                <img id="basketIcon" src="http://localhost:3000/templates/basket.png">
-                <p id="basketName">Корзина</p>
+            <div id="cart">
+            <div id="cartHead">
+                <img id="cartIcon" src="http://localhost:3000/templates/cart.png">
+                <p id="cartName">Корзина</p>
             </div>
-            <div id="basketTitle">
+            <div id="cartTitle">
                 <p>Названиe</p>
                 <p>Количество</p>
             </div>
-            <div id="basketContainer">`
+            <div id="cartContainer">`
 
-        for (let product of this.basket) {
+        for (let product of this.cart) {
 
             sumOrder += product.price * product.quantity;
 
             html += /*html*/`
-                <div class="basketProduct" id="positionProductInBasket${product.id}">
+                <div class="cartProduct" id="positionProductInCart${product.id}">
 
-                <button type="button"  class="buttonRemove" id="idProductInBasket${product.id}">
+                <button type="button"  class="buttonRemove" id="idProductInCart${product.id}">
                     <img src="http://localhost:3000/templates/closeButton.png" class="buttonDelete"/>
                 </button>
                 
@@ -50,13 +50,13 @@ export default class ProductBasket extends HTMLElement {
 
         html += /*html*/`
             </div>
-                <div id="basketOrder">
-                    <div id="basketTotal">
+                <div id="cartOrder">
+                    <div id="cartTotal">
                         <p>СУММА: ${sumOrder} РУБ.</p>
                     </div>
 
                     <form>
-                        <input class="basketBottonOrder" type="submit" value="ОФОРМИТЬ ЗАКАЗ">
+                        <input class="cartBottonOrder" type="submit" value="ОФОРМИТЬ ЗАКАЗ">
                     </form>
 
                 </div>
@@ -76,10 +76,10 @@ export default class ProductBasket extends HTMLElement {
             button.addEventListener('click', () => {
 
                 const productId = parseInt(button.id.match(/\d+/));
-                storageBasket.dispatch(deleteProduct(productId));
+                storageCart.dispatch(deleteProduct(productId));
             })
         }
     }
 }
 
-customElements.define("product-basket", ProductBasket);
+customElements.define("product-cart", ProductCart);

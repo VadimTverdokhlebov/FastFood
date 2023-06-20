@@ -1,7 +1,7 @@
-import { storageStateModal, storeDataProduct, storageCustomSandwich, storageBasket } from '../../store/store.js';
+import { storageStateModal, storeDataProduct, storageCustomSandwich, storageCart } from '../../store/store.js';
 import { activityModal } from '../../store/actionCreators/activityModal.js';
 import { removeCustomSandwich } from '../../store/actionCreators/removeCustomSandwich.js';
-import { addCustomSandwichToBasket } from '../../store/actionCreators/addCustomSandwichToBasket.js';
+import { addCustomSandwichToCart } from '../../store/actionCreators/addCustomSandwichToCart.js';
 import { setQuantityCustomSandwich } from '../../store/actionCreators/setQuantityCustomSandwich.js';
 
 export default class ModalOrder extends HTMLElement {
@@ -85,7 +85,7 @@ export default class ModalOrder extends HTMLElement {
             this.querySelector(`#buyCustomSandwich`)
                 .addEventListener('click', () => {
                     storageStateModal.dispatch(activityModal(false));
-                    storageBasket.dispatch(addCustomSandwichToBasket());
+                    storageCart.dispatch(addCustomSandwichToCart());
                     storageCustomSandwich.dispatch(removeCustomSandwich());
                 })
         }

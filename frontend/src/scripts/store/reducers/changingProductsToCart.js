@@ -7,7 +7,7 @@ import {
 
 const initialState = [];
 
-export function changingProductsToBasket(state = initialState, action) {
+export function changingProductsToCart(state = initialState, action) {
     switch (action.type) {
         case PRODUCT_ADD:
 

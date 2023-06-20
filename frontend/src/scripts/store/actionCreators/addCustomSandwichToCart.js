@@ -1,7 +1,7 @@
 import { ADD_CUSTOM_SANDWICH_TO_BASKET } from '../constants/actionTypes.js';
 import { storageCustomSandwich } from '../store.js';
 
-export function addCustomSandwichToBasket() {
+export function addCustomSandwichToCart() {
 
     const customSandwich = storageCustomSandwich.getState();
     const sum = getSumAdditivesSandwich(customSandwich.additives) + customSandwich.price;
