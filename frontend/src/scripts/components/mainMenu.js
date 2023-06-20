@@ -1,54 +1,24 @@
-import pubSub from '../PubSub.js';
+import { storageStateMainMenu } from '../store/store.js';
+import { changeCategoryMenu } from '../store/actionCreators/changeCategoryMenu.js';
 
 export default class MainMenu extends HTMLElement {
-
-    #categoriesMenu = [
-        {
-            id: "pizza",
-            name: "Пицца",
-        },
-        {
-            id: "shaurma",
-            name: "Шаурма",
-        },
-        {
-            id: "sandwiches",
-            name: "Сендвичи",
-        },
-        {
-            id: "burgers",
-            name: "Бургеры",
-        },
-        {
-            id: "chicken",
-            name: "Курица & Картофель",
-        },
-        {
-            id: "salads",
-            name: "Тортилья & Салаты",
-        },
-        {
-            id: "drinks",
-            name: "Напитки & Десерты",
-        }
-    ];
-
-    #state = {
-        selectedCategory: 'sandwiches',
-    }
 
     constructor() {
         super();
         this.render();
+        this.subscribeChangeCategoryMainMenu();
     }
 
     render() {
+
+        const stateMainMenu = storageStateMainMenu.getState();
         let html = '<ul class="mainMenu">';
-        for (let key of this.#categoriesMenu) {
-            if (this.#state.selectedCategory === key.id) {
-                html += `<li class="categoryMenu activeElementMenu" id="${key.id}">${key.name}</li>`;
+
+        for (let category of stateMainMenu.categoriesMenu) {
+            if (stateMainMenu.selectCategory === category.id) {
+                html += `<li class="categoryMenu activeElementMenu" id="${category.id}">${category.name}</li>`;
             } else {
-                html += `<li class="categoryMenu" id="${key.id}">${key.name}</li>`;
+                html += `<li class="categoryMenu" id="${category.id}">${category.name}</li>`;
             }
         }
 
@@ -59,27 +29,28 @@ export default class MainMenu extends HTMLElement {
     }
 
     categoryAddEventListener() {
-        let categoriesMenu = document.querySelectorAll('.categoryMenu');
+        let categoriesMenu = this.querySelectorAll('.categoryMenu');
+        
         for (let category of categoriesMenu) {
+
             category.addEventListener('click', () => {
-                if(category.id != this.#state.selectedCategory){
-                    this.setCategory(category.id);
+                const stateMainMenu = storageStateMainMenu.getState();
+                if (category.id != stateMainMenu.selectCategory) {
+
+                    for (let key of stateMainMenu.categoriesMenu) {
+                        if (key.id == category.id) {
+                            storageStateMainMenu.dispatch(changeCategoryMenu(category.id));
+                        }
+                    }
                 }
             })
         }
     }
 
-    setCategory(categoryId) {
-        this.state = {
-            ...this.#state,
-            selectedCategory: categoryId,
-        };
-    }
-
-    set state(newState) {
-        this.#state = newState;
-        this.render();
-        pubSub.publish("changeCategory", this.#state.selectedCategory);
+    subscribeChangeCategoryMainMenu() {
+        storageStateMainMenu.subscribe(() => {
+            this.render();
+        });
     }
 }
 

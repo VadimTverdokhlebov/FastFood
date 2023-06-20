@@ -1,41 +1,49 @@
-import pubSub from '../PubSub.js';
 import ProductCard from './productCard.js';
-import { storeDataProduct } from '../store/store.js';
+import { storeDataProduct, storageStateMainMenu } from '../store/store.js';
 
-export default class ProductsSelectedCategory {
+export default class ProductsCurrentCategory extends HTMLElement{
 
-    categoryMenu;
-    
-    constructor(categoryMenu) {
-        this.menu = storeDataProduct.getState().menu;
-        this.categoryMenu = categoryMenu;
+    menu;
+
+    constructor() {
+        super();
+        this.subscribeToUploadDataProduct()
         this.subscribeToCategoryChanges();
-        this.render();
     }
 
     render() {
 
+        const categoryMenu = storageStateMainMenu.getState().selectCategory;
+
         content.remove();
 
         const innerDiv = document.createElement('div');
-        
+
         innerDiv.id = "content";
-        
-        sidebar.after(innerDiv);
-        
+
+        this.prepend(innerDiv);
+
         const root = content;
 
         for (let elementMenu of this.menu) {
-            if (elementMenu.category === this.categoryMenu) {
-               new ProductCard(root, elementMenu);
+            if (elementMenu.category === categoryMenu) {
+                new ProductCard(root, elementMenu);
             }
         }
     }
 
     subscribeToCategoryChanges() {
-        pubSub.subscribe("changeCategory", category => {
-            this.categoryMenu = category;
+        storageStateMainMenu.subscribe(() => {
+            this.render();
+        });
+    }
+
+    subscribeToUploadDataProduct() {
+        storeDataProduct.subscribe(() => {
+            this.menu = storeDataProduct.getState().menu;
             this.render();
         });
     }
 }
+
+customElements.define("current-products", ProductsCurrentCategory);
