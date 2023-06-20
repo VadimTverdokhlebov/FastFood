@@ -1,5 +1,5 @@
-import { storageStateModal } from '../store/store.js';
-import { changeCategoryModal } from '../store/actionCreators/changeCategoryModal.js';
+import { storageStateModal } from '../../store/store.js';
+import { changeCategoryModal } from '../../store/actionCreators/changeCategoryModal.js';
 
 export default class ModalMenu extends HTMLElement {
 

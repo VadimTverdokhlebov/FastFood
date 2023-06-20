@@ -3,9 +3,9 @@ import "./modalButton.js";
 import "./modalDescription.js";
 import "./modalContent.js";
 
-import { storageStateModal, storageCustomSandwich } from '../store/store.js';
-import { activityModal } from '../store/actionCreators/activityModal.js';
-import { removeCustomSandwich } from '../store/actionCreators/removeCustomSandwich.js';
+import { storageStateModal, storageCustomSandwich } from '../../store/store.js';
+import { activityModal } from '../../store/actionCreators/activityModal.js';
+import { removeCustomSandwich } from '../../store/actionCreators/removeCustomSandwich.js';
 
 export default class ModalWindow extends HTMLElement {
 

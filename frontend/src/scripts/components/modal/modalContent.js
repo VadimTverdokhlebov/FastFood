@@ -1,4 +1,4 @@
-import { storageStateModal, storeDataProduct, storageCustomSandwich } from '../store/store.js';
+import { storageStateModal, storeDataProduct, storageCustomSandwich } from '../../store/store.js';
 import ModalProductCard from './modalProductCard.js';
 import './modalOrder.js';
 

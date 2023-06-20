@@ -1,4 +1,4 @@
-import { storageStateModal } from '../store/store.js';
+import { storageStateModal } from '../../store/store.js';
 
 export default class ModalDescription extends HTMLElement{
 

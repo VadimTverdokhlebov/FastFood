@@ -1,5 +1,5 @@
-import { storageStateModal, storageCustomSandwich } from '../store/store.js';
-import { addAdditives } from '../store/actionCreators/addAdditivesSandwich.js';
+import { storageStateModal, storageCustomSandwich } from '../../store/store.js';
+import { addAdditives } from '../../store/actionCreators/addAdditivesSandwich.js';
 
 export default class ModalProductCard {
 
