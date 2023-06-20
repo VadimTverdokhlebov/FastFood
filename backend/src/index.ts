@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import connectToDataBase from './db/connectToDataBase';
 import config from './config';
 import indexRouter from './routes/indexRouter';
@@ -13,12 +14,14 @@ async function startServer() {
   };
 
   const app = express();
+  const publicPath = path.join(__dirname, 'public');
 
+  app.use(express.static(publicPath));
   app.use(cors(corsOptions));
   app.use(express.json());
-  app.use(express.static('public'));
-  indexRouter(app);
   app.use(errorsMiddleware);
+
+  indexRouter(app);
 
   const PORT = config.port;
 
