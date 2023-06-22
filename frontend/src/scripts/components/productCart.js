@@ -1,24 +1,22 @@
 import { storageCart } from '../store/store.js';
-import { deleteProduct } from '../store/actionCreators/deleteProduct.js';
+import deleteProduct from '../store/actionCreators/deleteProduct.js';
 
 export default class ProductCart extends HTMLElement {
-    constructor() {
-        super();
-        this.cart = storageCart.getState();
-        this.render();
+  constructor() {
+    super();
+    this.cart = storageCart.getState();
+    this.render();
 
-        storageCart.subscribe(() => {
-            this.cart = storageCart.getState();
-            this.render();
-        });
+    storageCart.subscribe(() => {
+      this.cart = storageCart.getState();
+      this.render();
+    });
+  }
 
-    }
+  render() {
+    let sumOrder = 0;
 
-    render() {
-
-        let sumOrder = 0;
-
-        let html = /*html*/`
+    let html = /* html */`
             <div id="cart">
             <div id="cartHead">
                 <img id="cartIcon" src="http://localhost:3000/templates/cart.png">
@@ -28,13 +26,12 @@ export default class ProductCart extends HTMLElement {
                 <p>Названиe</p>
                 <p>Количество</p>
             </div>
-            <div id="cartContainer">`
+            <div id="cartContainer">`;
 
-        for (let product of this.cart) {
+    for (const product of this.cart) {
+      sumOrder += product.price * product.quantity;
 
-            sumOrder += product.price * product.quantity;
-
-            html += /*html*/`
+      html += /* html */`
                 <div class="cartProduct" id="positionProductInCart${product.id}">
 
                 <button type="button"  class="buttonRemove" id="idProductInCart${product.id}">
@@ -46,9 +43,9 @@ export default class ProductCart extends HTMLElement {
                 <p>${product.quantity}</p>
 
             </div>`;
-        }
+    }
 
-        html += /*html*/`
+    html += /* html */`
             </div>
                 <div id="cartOrder">
                     <div id="cartTotal">
@@ -62,24 +59,21 @@ export default class ProductCart extends HTMLElement {
                 </div>
             </div>`;
 
-        this.innerHTML = html;
+    this.innerHTML = html;
 
-        this.buttonDeleteProductAddEventListener();
+    this.buttonDeleteProductAddEventListener();
+  }
+
+  buttonDeleteProductAddEventListener() {
+    const buttons = this.querySelectorAll('.buttonRemove');
+
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const productId = parseInt(button.id.match(/\d+/), 10);
+        storageCart.dispatch(deleteProduct(productId));
+      });
     }
-
-    buttonDeleteProductAddEventListener() {
-
-        let buttons = this.querySelectorAll(`.buttonRemove`);
-
-        for (let button of buttons) {
-
-            button.addEventListener('click', () => {
-
-                const productId = parseInt(button.id.match(/\d+/));
-                storageCart.dispatch(deleteProduct(productId));
-            })
-        }
-    }
+  }
 }
 
-customElements.define("product-cart", ProductCart);
+customElements.define('product-cart', ProductCart);

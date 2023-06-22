@@ -1,24 +1,20 @@
 import { SET_QUANTITY_CUSTOM_SANDWICH } from '../constants/actionTypes.js';
 import { storageCustomSandwich } from '../store.js';
 
-export function setQuantityCustomSandwich(step) {
+export default function setQuantityCustomSandwich(step) {
+  let quantity = storageCustomSandwich.getState().quantity + step;
 
-    let quantity = storageCustomSandwich.getState().quantity + step;
+  if ((quantity <= 10) && (quantity > 0)) {
+    return {
+      type: SET_QUANTITY_CUSTOM_SANDWICH,
+      quantity,
+    };
+  }
 
-    if (quantity => 1 && quantity <= 10) {
-        return {
-            type: SET_QUANTITY_CUSTOM_SANDWICH,
-            quantity
-        };
-    } 
-    
-    else {
+  quantity = storageCustomSandwich.getState().quantity;
 
-        quantity = storageCustomSandwich.getState().quantity;
-
-        return {
-            type: SET_QUANTITY_CUSTOM_SANDWICH,
-            quantity
-        };
-    }
+  return {
+    type: SET_QUANTITY_CUSTOM_SANDWICH,
+    quantity,
+  };
 }

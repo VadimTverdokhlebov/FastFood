@@ -1,44 +1,41 @@
 import {
-    PRODUCT_ADD,
-    PRODUCT_SET_QUANTITY,
-    DELETE_PRODUCT,
-    ADD_CUSTOM_SANDWICH_TO_BASKET
+  PRODUCT_ADD,
+  PRODUCT_SET_QUANTITY,
+  DELETE_PRODUCT,
+  ADD_CUSTOM_SANDWICH_TO_BASKET,
 } from '../constants/actionTypes.js';
 
 const initialState = [];
 
-export function changingProductsToCart(state = initialState, action) {
-    switch (action.type) {
-        case PRODUCT_ADD:
+export default function changingProductsToCart(state = initialState, action) {
+  switch (action.type) {
+    case PRODUCT_ADD:
 
-            return [
-                ...state,
-                action.product
-            ];
+      return [
+        ...state,
+        action.product,
+      ];
 
-        case PRODUCT_SET_QUANTITY:
-            let cloneState = [];
+    case PRODUCT_SET_QUANTITY:
 
-            for (let elem of state) {
-                if (elem.id != action.product.id) {
-                    cloneState.push(elem);
-                } else {
-                    cloneState.push(action.product);
-                }
-            }
-            return cloneState;
+      return state.map((elem) => {
+        if (elem.id !== action.product.id) {
+          return elem;
+        }
+        return action.product;
+      });
 
-        case DELETE_PRODUCT:
+    case DELETE_PRODUCT:
 
-            return action.product;
+      return action.product;
 
-        case ADD_CUSTOM_SANDWICH_TO_BASKET:
+    case ADD_CUSTOM_SANDWICH_TO_BASKET:
 
-            return [
-                ...state,
-                action.product
-            ];
+      return [
+        ...state,
+        action.product,
+      ];
 
-        default: return state;
-    }
+    default: return state;
+  }
 }

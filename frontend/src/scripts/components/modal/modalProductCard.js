@@ -1,34 +1,32 @@
 import { storageStateModal, storageCustomSandwich } from '../../store/store.js';
-import { addAdditives } from '../../store/actionCreators/addAdditivesSandwich.js';
+import addAdditives from '../../store/actionCreators/addAdditivesSandwich.js';
 
 export default class ModalProductCard {
+  #additive;
 
-    #additive;
-    #root;
+  #root;
 
-    constructor(additive, root) {
-        this.#additive = additive;
-        this.#root = root;
+  constructor(additive, root) {
+    this.#additive = additive;
+    this.#root = root;
 
-        this.innerDiv = document.createElement('div');
-        this.innerDiv.id = `#innerDiv${this.#additive._id}`;
+    this.innerDiv = document.createElement('div');
+    this.innerDiv.id = `#innerDiv${this.#additive._id}`;
 
-        this.#root.prepend(this.innerDiv);
+    this.#root.prepend(this.innerDiv);
 
-        this.stateModal = storageStateModal.getState();
-        this.render();
+    this.stateModal = storageStateModal.getState();
+    this.render();
+  }
 
+  render() {
+    let selectedAditive = '';
+
+    if (this.checkAdditivesSandwich()) {
+      selectedAditive = 'style="background-color: rgb(46 155 19 / 85%);"';
     }
 
-    render() {
-
-        let selectedAditive = '';
-
-        if (this.checkAdditivesSandwich()) {
-            selectedAditive = 'style="background-color: rgb(46 155 19 / 85%);"';
-        }
-
-        let html = /*html*/`
+    const html = /* html */`
             <div class="modalProductCard" ${selectedAditive}>
                 <div class="modalProductImage">
                     <img src="http://localhost:3000/${this.#additive.image}">
@@ -37,23 +35,22 @@ export default class ModalProductCard {
                 <p>Цена: ${this.#additive.price} руб.</p>
             </div>`;
 
-        this.innerDiv.innerHTML = html;
+    this.innerDiv.innerHTML = html;
 
-        this.checkAdditivesSandwich();
+    this.checkAdditivesSandwich();
 
-        this.innerDiv.addEventListener('click', () => {
-            storageCustomSandwich.dispatch(addAdditives(this.#additive._id, this.#additive.category));
-        })
+    this.innerDiv.addEventListener('click', () => {
+      storageCustomSandwich.dispatch(addAdditives(this.#additive._id, this.#additive.category));
+    });
+  }
+
+  checkAdditivesSandwich() {
+    const additivesCustomSandwich = storageCustomSandwich.getState().additives;
+    for (const additive of additivesCustomSandwich) {
+      if (additive._id === this.#additive._id) {
+        return true;
+      }
     }
-
-    checkAdditivesSandwich() {
-        const additivesCustomSandwich = storageCustomSandwich.getState().additives;
-        for (let additive of additivesCustomSandwich) {
-            if (additive._id == this.#additive._id) {
-                return true;
-            }
-        }
-        return false;
-    }
+    return false;
+  }
 }
-

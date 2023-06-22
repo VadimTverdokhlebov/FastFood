@@ -1,29 +1,26 @@
-import { storageStateModal, storeDataProduct, storageCustomSandwich, storageCart } from '../../store/store.js';
-import { activityModal } from '../../store/actionCreators/activityModal.js';
-import { removeCustomSandwich } from '../../store/actionCreators/removeCustomSandwich.js';
-import { addCustomSandwichToCart } from '../../store/actionCreators/addCustomSandwichToCart.js';
-import { setQuantityCustomSandwich } from '../../store/actionCreators/setQuantityCustomSandwich.js';
+import {
+  storageStateModal, storeDataProduct, storageCustomSandwich, storageCart,
+} from '../../store/store.js';
+import activityModal from '../../store/actionCreators/activityModal.js';
+import removeCustomSandwich from '../../store/actionCreators/removeCustomSandwich.js';
+import addCustomSandwichToCart from '../../store/actionCreators/addCustomSandwichToCart.js';
+import setQuantityCustomSandwich from '../../store/actionCreators/setQuantityCustomSandwich.js';
 
 export default class ModalOrder extends HTMLElement {
+  constructor() {
+    super();
+    this.stateModal = storageStateModal.getState();
+    this.additives = storeDataProduct.getState().additives;
+    this.customSandwich = storageCustomSandwich.getState();
+    this.render();
+  }
 
-    constructor() {
-        super();
-        this.stateModal = storageStateModal.getState();
-        this.additives = storeDataProduct.getState().additives;
-        this.customSandwich = storageCustomSandwich.getState();
-        this.render();
-        
-    }
+  render() {
+    const { additives } = this.customSandwich;
+    const additivesSum = additives.reduce((sum, additive) => sum + additive.price, 0);
+    const sumOrder = this.customSandwich.quantity * (additivesSum + this.customSandwich.price);
 
-    render() {
-
-        const sumOrder = this.customSandwich.quantity * (
-            this.getSumAdditivesSandwich(this.customSandwich.additives) +
-            this.customSandwich.price);
-
-        const additives = this.customSandwich.additives;
-
-        this.innerHTML = /*html*/`
+    this.innerHTML = /* html */`
                 <div class="doneProductContainer">
                     <div class="customSandwichMenu">
                         <div class="customSandwichPreview">
@@ -58,62 +55,50 @@ export default class ModalOrder extends HTMLElement {
                     </div>
                 </div>`;
 
-        this.buttonsAddEventListener();
-        this.buyCustomSandwichAddEventListener();
+    this.buttonsAddEventListener();
+    this.buyCustomSandwichAddEventListener();
+  }
 
+  buttonsAddEventListener() {
+    if (this.customSandwich.quantity < 10) {
+      this.querySelector(`#button1${this.customSandwich.id}`)
+        .addEventListener('click', () => {
+          storageCustomSandwich.dispatch(setQuantityCustomSandwich(1));
+        });
     }
 
-    buttonsAddEventListener() {
+    if (this.customSandwich.quantity > 1) {
+      this.querySelector(`#button2${this.customSandwich.id}`)
+        .addEventListener('click', () => {
+          storageCustomSandwich.dispatch(setQuantityCustomSandwich(-1));
+        });
+    }
+  }
 
-        if (this.customSandwich.quantity < 10) {
-            this.querySelector(`#button1${this.customSandwich.id}`)
-                .addEventListener("click", () => {
-                    storageCustomSandwich.dispatch(setQuantityCustomSandwich(1));
-                });
-        }
+  buyCustomSandwichAddEventListener() {
+    if (this.stateModal.selectCategory === 'sandwichDone') {
+      this.querySelector('#buyCustomSandwich')
+        .addEventListener('click', () => {
+          storageStateModal.dispatch(activityModal(false));
+          storageCart.dispatch(addCustomSandwichToCart());
+          storageCustomSandwich.dispatch(removeCustomSandwich());
+        });
+    }
+  }
 
-        if (this.customSandwich.quantity > 1) {
-            this.querySelector(`#button2${this.customSandwich.id}`)
-                .addEventListener("click", () => {
-                    storageCustomSandwich.dispatch(setQuantityCustomSandwich(-1));
-                });
-        }
+  getAdditivesCategorySandwich(category, additives) {
+    let result = '';
+    for (const additive of additives) {
+      if (additive.category === category) {
+        result += `${additive.name}; `;
+      }
     }
 
-    buyCustomSandwichAddEventListener() {
-        if (this.stateModal.selectCategory == 'sandwichDone') {
-            this.querySelector(`#buyCustomSandwich`)
-                .addEventListener('click', () => {
-                    storageStateModal.dispatch(activityModal(false));
-                    storageCart.dispatch(addCustomSandwichToCart());
-                    storageCustomSandwich.dispatch(removeCustomSandwich());
-                })
-        }
+    if (!result) {
+      return 'Нет;';
     }
-
-    getAdditivesCategorySandwich(category, additives) {
-        let result = '';
-        for (let additive of additives) {
-            if (additive.category == category) {
-                result += additive.name + '; ';
-            }
-        }
-
-        if (!result) {
-            return 'Нет;';
-        } else {
-            return result;
-        }
-    }
-
-    getSumAdditivesSandwich(additives) {
-        let result = 0;
-        for (let additive of additives) {
-            result += additive.price;
-        }
-
-        return result;
-    }
+    return result;
+  }
 }
 
-customElements.define("modal-order", ModalOrder);
+customElements.define('modal-order', ModalOrder);
