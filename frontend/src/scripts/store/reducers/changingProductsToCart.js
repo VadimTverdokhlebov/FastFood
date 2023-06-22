@@ -2,7 +2,7 @@ import {
   PRODUCT_ADD,
   PRODUCT_SET_QUANTITY,
   DELETE_PRODUCT,
-  ADD_CUSTOM_SANDWICH_TO_BASKET,
+  ADD_CUSTOM_SANDWICH_TO_CART,
 } from '../constants/actionTypes.js';
 
 const initialState = [];
@@ -29,7 +29,7 @@ export default function changingProductsToCart(state = initialState, action) {
 
       return action.product;
 
-    case ADD_CUSTOM_SANDWICH_TO_BASKET:
+    case ADD_CUSTOM_SANDWICH_TO_CART:
 
       return [
         ...state,

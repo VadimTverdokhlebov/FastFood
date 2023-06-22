@@ -1,4 +1,4 @@
-import { ADD_CUSTOM_SANDWICH_TO_BASKET } from '../constants/actionTypes.js';
+import { ADD_CUSTOM_SANDWICH_TO_CART } from '../constants/actionTypes.js';
 import { storageCustomSandwich } from '../store.js';
 
 export default function addCustomSandwichToCart() {
@@ -14,7 +14,7 @@ export default function addCustomSandwichToCart() {
   };
 
   return {
-    type: ADD_CUSTOM_SANDWICH_TO_BASKET,
+    type: ADD_CUSTOM_SANDWICH_TO_CART,
     product,
   };
 }
