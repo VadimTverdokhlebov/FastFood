@@ -7,7 +7,7 @@
   "scripts": {
     "serve": "nodemon ./src/index.ts",
     "run": "npm run build && npm run start",
-    "build": "tsc && node copy-public.js",
+    "build": "rm -rf dist && tsc && node copy-public.js",
     "start": "node dist/index.js",
     "lint": "eslint . --ext .ts",
     "fix": "eslint . --ext .ts --fix"

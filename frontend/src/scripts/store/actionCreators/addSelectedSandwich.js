@@ -1,21 +1,21 @@
 import { ADD_SELECTED_SANDWICH } from '../constants/actionTypes.js';
 import { storeDataProduct } from '../store.js';
 
-export function addSelectedSandwich(productId, quantity) {
-    const menu = storeDataProduct.getState().menu;
+export default function addSelectedSandwich(productId, quantity) {
+  const { menu } = storeDataProduct.getState();
 
-    const productBase = menu.find(product => product._id == productId)
-    
-    const product = {
-        id: productBase._id, 
-        price: productBase.price,
-        image: productBase.image, 
-        name: productBase.name,
-        quantity: quantity
-    };
+  const productBase = menu.find((product) => product._id === productId);
 
-    return {
-        type: ADD_SELECTED_SANDWICH,
-        product
-    };
+  const product = {
+    id: productBase._id,
+    price: productBase.price,
+    image: productBase.image,
+    name: productBase.name,
+    quantity,
+  };
+
+  return {
+    type: ADD_SELECTED_SANDWICH,
+    product,
+  };
 }

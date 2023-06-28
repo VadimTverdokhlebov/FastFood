@@ -61,7 +61,7 @@
     color: var(--light-blue-color);
 }
 
-.formAddBasket {
+.formAddCart {
     text-align: center;
 }
 
@@ -86,14 +86,14 @@
     display: none;
 }
 
-.quantityProductInBasket {
+.quantityProductInCart {
     all: unset;
     -moz-appearance: textfield;
     width: 3em;
     text-align: center;
 }
 
-.quantityProductInBasket::-webkit-inner-spin-button {
+.quantityProductInCart::-webkit-inner-spin-button {
     display: none;
 }
 

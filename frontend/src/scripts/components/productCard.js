@@ -1,33 +1,32 @@
-import { storageBasket, storageStateModal, storageCustomSandwich } from '../store/store.js';
-import { addProduct } from '../store/actionCreators/addProductToBasket.js';
-import { activityModal } from '../store/actionCreators/activityModal.js';
-import { addSelectedSandwich } from '../store/actionCreators/addSelectedSandwich.js';
+import { storageCart, storageStateModal, storageCustomSandwich } from '../store/store.js';
+import addProduct from '../store/actionCreators/addProductToCart.js';
+import activityModal from '../store/actionCreators/activityModal.js';
+import addSelectedSandwich from '../store/actionCreators/addSelectedSandwich.js';
 
 export default class ProductCard {
+  root;
 
-    root;
-    elementMenu;
+  elementMenu;
 
-    #state = {
-        quantity: 1,
-    };
+  #state = {
+    quantity: 1,
+  };
 
-    constructor(root, elementMenu) {
-        this.root = root;
-        this.elementMenu = elementMenu;
+  constructor(root, elementMenu) {
+    this.root = root;
+    this.elementMenu = elementMenu;
 
-        this.innerDiv = document.createElement('div');
-        this.innerDiv.id = `#innerDiv${this.elementMenu._id}`;
+    this.innerDiv = document.createElement('div');
+    this.innerDiv.id = `#innerDiv${this.elementMenu._id}`;
 
-        this.root.prepend(this.innerDiv);
+    this.root.prepend(this.innerDiv);
 
-        this.render();
-    }
+    this.render();
+  }
 
-    render() {
-        const html = /*html*/
-
-            `<div class="product">
+  render() {
+    const html = /* html */`
+       <div class="product">
             <img class="foodLogo" src="http://localhost:3000/images/markets/subway.png">
         
             <img class="foodPicture" src="http://localhost:3000/${this.elementMenu.image}">
@@ -41,7 +40,7 @@ export default class ProductCard {
         <p class="foodPrice">Цена: ${this.elementMenu.price} руб.</p>
         <p class="foodCount">КОЛИЧЕСТВО</p>
 
-        <form class="formAddBasket" id="addBasket" method="POST">
+        <form class="formAddCart" id="addCart" method="POST">
             <div class="foodCounter">
 
                 <button id="btn2${this.elementMenu._id}" type="button">
@@ -55,65 +54,61 @@ export default class ProductCard {
                 
                 <input class="buttonBuy" id="buttonId${this.elementMenu._id}" type="button" value = "В КОРЗИНУ">
         </form>
-        </div>`
+        </div>`;
 
-        this.innerDiv.innerHTML = html;
-        this.buttonToBaskedAddEventListener();
-        this.buttonsAddEventListener();
-    }
+    this.innerDiv.innerHTML = html;
+    this.buttonToBaskedAddEventListener();
+    this.buttonsAddEventListener();
+  }
 
-    buttonToBaskedAddEventListener() {
-        this.innerDiv.querySelector(`#buttonId${this.elementMenu._id}`)
-            .addEventListener('click', () => {
-                if (this.elementMenu.category == 'sandwiches') {
+  buttonToBaskedAddEventListener() {
+    this.innerDiv.querySelector(`#buttonId${this.elementMenu._id}`)
+      .addEventListener('click', () => {
+        if (this.elementMenu.category === 'sandwiches') {
+          const id = this.elementMenu._id;
+          const { quantity } = this.#state;
+          const activity = true;
 
-                    const id = this.elementMenu._id;
-                    const quantity = this.#state.quantity;
-                    const activity = true;
+          storageStateModal.dispatch(activityModal(activity));
+          storageCustomSandwich.dispatch(addSelectedSandwich(id, quantity));
+        } else {
+          const id = this.elementMenu._id;
+          const { quantity } = this.#state;
+          const { name } = this.elementMenu;
 
-                    storageStateModal.dispatch(activityModal(activity));
-                    storageCustomSandwich.dispatch(addSelectedSandwich(id, quantity));
-            
-                } else {
-
-                    const id = this.elementMenu._id;
-                    const quantity = this.#state.quantity;
-                    const name = this.elementMenu.name;
-
-                    storageBasket.dispatch(addProduct(id, quantity, name));
-                }
-            })
-    }
-
-    buttonsAddEventListener() {
-        
-        this.innerDiv.querySelector(`#btn1${this.elementMenu._id}`)
-            .addEventListener("click", this.increment.bind(this));
-
-        this.innerDiv.querySelector(`#btn2${this.elementMenu._id}`)
-            .addEventListener("click", this.decrement.bind(this));
-    }
-
-    increment() {
-        if (this.#state.quantity < 10) {
-            this.state = {
-                ...this.#state,
-                quantity: this.#state.quantity + 1,
-            };
+          storageCart.dispatch(addProduct(id, quantity, name));
         }
-    }
+      });
+  }
 
-    decrement() {
-        if (this.#state.quantity > 1) {
-            this.state = {
-                ...this.#state,
-                quantity: this.#state.quantity - 1,
-            };
-        }
-    }
+  buttonsAddEventListener() {
+    this.innerDiv.querySelector(`#btn1${this.elementMenu._id}`)
+      .addEventListener('click', this.increment.bind(this));
 
-    set state(newState) {
-        this.#state = newState;
-        this.render();
+    this.innerDiv.querySelector(`#btn2${this.elementMenu._id}`)
+      .addEventListener('click', this.decrement.bind(this));
+  }
+
+  increment() {
+    if (this.#state.quantity < 10) {
+      this.state = {
+        ...this.#state,
+        quantity: this.#state.quantity + 1,
+      };
     }
+  }
+
+  decrement() {
+    if (this.#state.quantity > 1) {
+      this.state = {
+        ...this.#state,
+        quantity: this.#state.quantity - 1,
+      };
+    }
+  }
+
+  set state(newState) {
+    this.#state = newState;
+    this.render();
+  }
 }

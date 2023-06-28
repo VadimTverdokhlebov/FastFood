@@ -1,62 +1,64 @@
 import { CHANGE_CATEGORY_MODAL, SHOW_MODAL, REMOVE_MODAL } from '../constants/actionTypes.js';
 
 const initialState = {
-    categoriesMenu: [
-        {
-            id: "sizes",
-            name: "Размер",
-            description: "Выберите размер сендвича",
-        },
-        {
-            id: "breads",
-            name: "Хлеб",
-            description: "Хлеб для сендвича на выбор",
-        },
-        {
-            id: "vegetables",
-            name: "Овощи",
-            description: "Дополнительные овощи бесплатно",
-        },
-        {
-            id: "sauses",
-            name: "Соусы",
-            description: "Выберите 3 бесплатных соуса по вкусу",
-        },
-        {
-            id: "fillings",
-            name: "Начинка",
-            description: "Добавьте начинку по вкусу",
-        },
-        {
-            id: "sandwichDone",
-            name: "Готово",
-            description: "Проверьте и добавьте в корзину",
-        },
-    ],
-    selectCategory: 'sizes',
-    description: 'Выберите размер сендвича',
-    activity: false,
+  categoriesMenu: [
+    {
+      id: 'sizes',
+      name: 'Размер',
+      description: 'Выберите размер сендвича',
+    },
+    {
+      id: 'breads',
+      name: 'Хлеб',
+      description: 'Хлеб для сендвича на выбор',
+    },
+    {
+      id: 'vegetables',
+      name: 'Овощи',
+      description: 'Дополнительные овощи бесплатно',
+    },
+    {
+      id: 'sauses',
+      name: 'Соусы',
+      description: 'Выберите 3 бесплатных соуса по вкусу',
+    },
+    {
+      id: 'fillings',
+      name: 'Начинка',
+      description: 'Добавьте начинку по вкусу',
+    },
+    {
+      id: 'sandwichDone',
+      name: 'Готово',
+      description: 'Проверьте и добавьте в корзину',
+    },
+  ],
+  selectCategory: 'sizes',
+  description: 'Выберите размер сендвича',
+  activity: false,
 };
 
-export function manageModalWindow(state = initialState, action) {
-    switch (action.type) {
-        case SHOW_MODAL:
+export default function manageModalWindow(state = initialState, action) {
+  switch (action.type) {
+    case SHOW_MODAL:
 
-            return Object.assign({}, state,
-                { activity: action.activity });
+      return {
+        ...state,
+        activity: action.activity,
+      };
 
+    case CHANGE_CATEGORY_MODAL:
 
-        case CHANGE_CATEGORY_MODAL:
+      return {
+        ...state,
+        selectCategory: action.selectCategory,
+        description: action.description,
+      };
 
-            return Object.assign({}, state,
-                { selectCategory: action.selectCategory },
-                { description: action.description });
+    case REMOVE_MODAL:
 
-        case REMOVE_MODAL:
+      return initialState;
 
-            return initialState;
-            
-        default: return state;
-    }
+    default: return state;
+  }
 }
-
