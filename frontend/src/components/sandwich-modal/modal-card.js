@@ -1,3 +1,4 @@
+import config from '../../config.js';
 import { storageStateModal, storageCustomSandwich } from '../../store/store.js';
 import addAdditives from '../../store/actionCreators/addAdditivesSandwich.js';
 
@@ -25,7 +26,7 @@ export default class ModalCard extends HTMLElement {
     const html = /* html */`
             <div class="modalProductCard" ${selectedAditive}>
                 <div class="modalProductImage">
-                    <img src="http://localhost:3000/${this.image}">
+                    <img src="http://${config.host}:${config.port}/${this.image}">
                 </div>               
                 <p>${this.name}</p>
                 <p>Цена: ${this.price} руб.</p>

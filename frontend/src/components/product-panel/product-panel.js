@@ -1,4 +1,5 @@
 import './product-panel.css';
+import config from '../../config.js';
 import { storageCart, storageStateModal, storageCustomSandwich } from '../../store/store.js';
 import addProduct from '../../store/actionCreators/addProductToCart.js';
 import activityModal from '../../store/actionCreators/activityModal.js';
@@ -25,9 +26,9 @@ export default class ProductCard extends HTMLElement {
   render() {
     const html = /* html */`
        <div class="product">
-            <img class="foodLogo" src="http://localhost:3000/images/markets/subway.png">
+            <img class="foodLogo" src="http://${config.host}:${config.port}/images/markets/subway.png">
         
-            <img class="foodPicture" src="http://localhost:3000/${this.image}">
+            <img class="foodPicture" src="http://${config.host}:${config.port}/${this.image}">
         
         <div class="foodName">${this.name}</div>
 
@@ -42,11 +43,11 @@ export default class ProductCard extends HTMLElement {
             <div class="foodCounter">
 
                 <button id="btn2${this.id}" type="button">
-                    <img alt="-" src="http://localhost:3000/templates/minus.png" class="buttonMinus"/>
+                    <img alt="-" src="http://${config.host}:${config.port}/templates/minus.png" class="buttonMinus"/>
                 </button>
                     <input class="quantity" type="text" value="${this.#state.quantity}">
                 <button id="btn1${this.id}" type="button">
-                    <img alt="+" src="http://localhost:3000/templates/plus.png" class="buttonPlus"/>
+                    <img alt="+" src="http://${config.host}:${config.port}/templates/plus.png" class="buttonPlus"/>
                 </button>
             </div>
                 

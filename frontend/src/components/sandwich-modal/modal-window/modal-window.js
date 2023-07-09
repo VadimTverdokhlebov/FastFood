@@ -3,6 +3,7 @@ import '../modal-menu.js';
 import '../modal-button.js';
 import '../modal-description.js';
 import '../modal-content.js';
+import config from '../../../config.js';
 import { storageStateModal, storageCustomSandwich } from '../../../store/store.js';
 import activityModal from '../../../store/actionCreators/activityModal.js';
 import removeCustomSandwich from '../../../store/actionCreators/removeCustomSandwich.js';
@@ -18,7 +19,7 @@ export default class ModalWindow extends HTMLElement {
             <div id="modalContainer">                
                 <div class="modalTop">
                     <button class="closeButtonModal">
-                        <img src="http://localhost:3000/templates/closeButton.png" class="buttonRemoveModal"/>
+                        <img src="http://${config.host}:${config.port}/templates/closeButton.png" class="buttonRemoveModal"/>
                     </button>                            
                     <modal-description></modal-description>
                 </div>

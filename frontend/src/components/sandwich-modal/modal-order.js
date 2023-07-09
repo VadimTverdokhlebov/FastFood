@@ -1,6 +1,7 @@
 import {
   storageStateModal, storeDataProduct, storageCustomSandwich, storageCart,
 } from '../../store/store.js';
+import config from '../../config.js';
 import activityModal from '../../store/actionCreators/activityModal.js';
 import removeCustomSandwich from '../../store/actionCreators/removeCustomSandwich.js';
 import addCustomSandwichToCart from '../../store/actionCreators/addCustomSandwichToCart.js';
@@ -24,7 +25,7 @@ export default class ModalOrder extends HTMLElement {
                 <div class="doneProductContainer">
                     <div class="customSandwichMenu">
                         <div class="customSandwichPreview">
-                            <img class="foodPicture" src="http://localhost:3000/templates/result_sandwich.jpg">
+                            <img class="foodPicture" src="http://${config.host}:${config.port}/templates/result_sandwich.jpg">
                         </div>
 
                         <div id="customSandwichContainer">
@@ -43,11 +44,11 @@ export default class ModalOrder extends HTMLElement {
 
                         <div class="foodCounter">
                             <button id="button2${this.customSandwich.id}" type="button">
-                                <img alt="-" src="http://localhost:3000/templates/minus.png" class="buttonMinus"/>
+                                <img alt="-" src="http://${config.host}:${config.port}/templates/minus.png" class="buttonMinus"/>
                             </button>
                                 <input class="quantity" type="text" value="${this.customSandwich.quantity}">
                             <button id="button1${this.customSandwich.id}" type="button">
-                                <img alt="+" src="http://localhost:3000/templates/plus.png" class="buttonPlus"/>
+                                <img alt="+" src="http://${config.host}:${config.port}/templates/plus.png" class="buttonPlus"/>
                             </button>
                         </div>
 

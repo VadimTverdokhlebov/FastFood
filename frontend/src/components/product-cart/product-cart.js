@@ -1,4 +1,5 @@
 import './product-cart.css';
+import config from '../../config.js';
 import { storageCart } from '../../store/store.js';
 import deleteProduct from '../../store/actionCreators/deleteProduct.js';
 
@@ -20,7 +21,7 @@ export default class ProductCart extends HTMLElement {
     let html = /* html */`
             <div id="cart">
             <div id="cartHead">
-                <img id="cartIcon" src="http://localhost:3000/templates/cart.png">
+                <img id="cartIcon" src="http://${config.host}:${config.port}/templates/cart.png">
                 <p id="cartName">Корзина</p>
             </div>
             <div id="cartTitle">
@@ -36,7 +37,7 @@ export default class ProductCart extends HTMLElement {
                 <div class="cartProduct" id="positionProductInCart${product.id}">
 
                 <button type="button"  class="buttonRemove" id="idProductInCart${product.id}">
-                    <img src="http://localhost:3000/templates/closeButton.png" class="buttonDelete"/>
+                    <img src="http://${config.host}:${config.port}/templates/closeButton.png" class="buttonDelete"/>
                 </button>
                 
                 <p>${product.name}</p>

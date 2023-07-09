@@ -1,5 +1,7 @@
 import '../product-panel/product-panel.js';
 import { storeDataProduct, storageStateMainMenu } from '../../store/store.js';
+import productReceived from '../../store/actionCreators/productReceived.js';
+import getDataProduct from '../../api/getDataProduct.js';
 
 export default class CurrentProducts extends HTMLElement {
   menu;
@@ -10,6 +12,7 @@ export default class CurrentProducts extends HTMLElement {
     this.id = 'content';
     this.subscribeToUploadDataProduct();
     this.subscribeToCategoryChanges();
+    this.uploadDataProductToStore();
   }
 
   render() {
@@ -42,6 +45,12 @@ export default class CurrentProducts extends HTMLElement {
       this.menu = storeDataProduct.getState().menu;
       this.render();
     });
+  }
+
+  async uploadDataProductToStore() {
+    const dataProduct = await getDataProduct();
+
+    storeDataProduct.dispatch(productReceived(dataProduct));
   }
 }
 
