@@ -1,19 +1,15 @@
 import { storageStateModal, storageCustomSandwich } from '../../store/store.js';
 import addAdditives from '../../store/actionCreators/addAdditivesSandwich.js';
 
-export default class ModalProductCard {
-  #additive;
+export default class ModalCard extends HTMLElement {
+  constructor() {
+    super();
 
-  #root;
-
-  constructor(additive, root) {
-    this.#additive = additive;
-    this.#root = root;
-
-    this.innerDiv = document.createElement('div');
-    this.innerDiv.id = `#innerDiv${this.#additive._id}`;
-
-    this.#root.prepend(this.innerDiv);
+    this.image = this.getAttribute('image');
+    this.name = this.getAttribute('name');
+    this.price = this.getAttribute('price');
+    this.id = this.getAttribute('id');
+    this.category = this.getAttribute('category');
 
     this.stateModal = storageStateModal.getState();
     this.render();
@@ -29,28 +25,29 @@ export default class ModalProductCard {
     const html = /* html */`
             <div class="modalProductCard" ${selectedAditive}>
                 <div class="modalProductImage">
-                    <img src="http://localhost:3000/${this.#additive.image}">
+                    <img src="http://localhost:3000/${this.image}">
                 </div>               
-                <p>${this.#additive.name}</p>
-                <p>Цена: ${this.#additive.price} руб.</p>
+                <p>${this.name}</p>
+                <p>Цена: ${this.price} руб.</p>
             </div>`;
 
-    this.innerDiv.innerHTML = html;
-
+    this.innerHTML = html;
     this.checkAdditivesSandwich();
 
-    this.innerDiv.addEventListener('click', () => {
-      storageCustomSandwich.dispatch(addAdditives(this.#additive._id, this.#additive.category));
+    this.addEventListener('click', () => {
+      storageCustomSandwich.dispatch(addAdditives(this.id, this.category));
     });
   }
 
   checkAdditivesSandwich() {
     const additivesCustomSandwich = storageCustomSandwich.getState().additives;
     for (const additive of additivesCustomSandwich) {
-      if (additive._id === this.#additive._id) {
+      if (additive._id === this.id) {
         return true;
       }
     }
     return false;
   }
 }
+
+customElements.define('modal-card', ModalCard);

@@ -1,10 +1,11 @@
-import './modalMenu.js';
-import './modalButton.js';
-import './modalDescription.js';
-import './modalContent.js';
-import { storageStateModal, storageCustomSandwich } from '../../store/store.js';
-import activityModal from '../../store/actionCreators/activityModal.js';
-import removeCustomSandwich from '../../store/actionCreators/removeCustomSandwich.js';
+import './modal-window.css';
+import '../modal-menu.js';
+import '../modal-button.js';
+import '../modal-description.js';
+import '../modal-content.js';
+import { storageStateModal, storageCustomSandwich } from '../../../store/store.js';
+import activityModal from '../../../store/actionCreators/activityModal.js';
+import removeCustomSandwich from '../../../store/actionCreators/removeCustomSandwich.js';
 
 export default class ModalWindow extends HTMLElement {
   constructor() {
@@ -37,13 +38,10 @@ export default class ModalWindow extends HTMLElement {
   subscribeChangeActivityModal() {
     storageStateModal.subscribe(() => {
       this.activity = storageStateModal.getState().activity;
-
       if (this.activity) {
         this.render();
-      }
-
-      if (!this.activity) {
-        modalContainer.remove();
+      } else {
+        this.innerHTML = '';
       }
     });
   }

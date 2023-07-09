@@ -1,5 +1,6 @@
-import { storageCart } from '../store/store.js';
-import deleteProduct from '../store/actionCreators/deleteProduct.js';
+import './product-cart.css';
+import { storageCart } from '../../store/store.js';
+import deleteProduct from '../../store/actionCreators/deleteProduct.js';
 
 export default class ProductCart extends HTMLElement {
   constructor() {

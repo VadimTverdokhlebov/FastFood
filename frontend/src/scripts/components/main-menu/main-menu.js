@@ -1,5 +1,6 @@
-import { storageStateMainMenu } from '../store/store.js';
-import changeCategoryMenu from '../store/actionCreators/changeCategoryMenu.js';
+import './main-menu.css';
+import { storageStateMainMenu } from '../../store/store.js';
+import changeCategoryMenu from '../../store/actionCreators/changeCategoryMenu.js';
 
 export default class MainMenu extends HTMLElement {
   constructor() {

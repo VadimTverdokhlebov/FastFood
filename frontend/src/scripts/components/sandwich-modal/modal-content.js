@@ -1,10 +1,11 @@
 import { storageStateModal, storeDataProduct, storageCustomSandwich } from '../../store/store.js';
-import ModalProductCard from './modalProductCard.js';
-import './modalOrder.js';
+import './modal-card.js';
+import './modal-order.js';
 
 export default class ModalContent extends HTMLElement {
   constructor() {
     super();
+    this.id = 'productContainer';
     this.stateModal = storageStateModal.getState();
     this.additives = storeDataProduct.getState().additives;
     this.render();
@@ -18,22 +19,30 @@ export default class ModalContent extends HTMLElement {
   }
 
   render() {
+    let html = '';
     if (this.stateModal.selectCategory !== 'sandwichDone') {
-      this.innerHTML = /* html */'<div id="productContainer"></div>';
-
-      const root = productContainer;
+      html = /* html */'<div id="productContainer"></div>';
 
       for (const additive of this.additives) {
-        if (this.stateModal.selectCategory === additive.category && productContainer) {
-          new ModalProductCard(additive, root);
+        if (this.stateModal.selectCategory === additive.category) {
+          html += `<modal-card 
+            image="${additive.image}" 
+            name="${additive.name}" 
+            id=${additive._id} 
+            price="${additive.price}" 
+            description="${additive.description}" 
+            category="${additive.category}">
+          </modal-card>`;
         }
       }
     } else {
-      this.innerHTML = /* html */`
+      html = /* html */`
                 <div id="productContainer">
                     <modal-order></modal-order>
                 </div>`;
     }
+
+    this.innerHTML = html;
   }
 }
 

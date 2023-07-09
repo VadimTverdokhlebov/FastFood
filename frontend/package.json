@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "serve": "webpack serve",
-    "build": "webpack",
-    "clear": "rm -rf dist",
+    "build": "rm -rf dist webpack",
     "lint": "eslint src/**/*.js",
     "fix": "eslint src/**/*.js --fix"
   },
