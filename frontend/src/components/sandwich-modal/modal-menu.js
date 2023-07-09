@@ -15,12 +15,12 @@ export default class ModalMenu extends HTMLElement {
     for (const category of this.stateModal.categoriesMenu) {
       if (this.stateModal.selectCategory === category.id) {
         html += `<li  class="categoryMenuModal selectedCategoryMenuModal" id="${category.id}">
-                            <p class="textMenuModal">${category.name}</p>
-                        </li>`;
+                    <p class="textMenuModal">${category.name}</p>
+                </li>`;
       } else {
         html += `<li  class="categoryMenuModal" id="${category.id}">
-                            <p class="textMenuModal">${category.name}</p>
-                        </li>`;
+                    <p class="textMenuModal">${category.name}</p>
+                </li>`;
       }
     }
 

@@ -30,11 +30,11 @@ export default class ModalOrder extends HTMLElement {
 
                         <div id="customSandwichContainer">
                             <p id="yourSandwichIsDone">Ваш сендвич готов!</p>
-                            <p>Размер: ${this.getAdditivesCategorySandwich('sizes', additives)}</p>
-                            <p>Хлеб: ${this.getAdditivesCategorySandwich('breads', additives)}</p>
-                            <p>Овощи: ${this.getAdditivesCategorySandwich('vegetables', additives)}</p>
-                            <p>Соусы: ${this.getAdditivesCategorySandwich('sauses', additives)}</p>
-                            <p>Начинка: ${this.getAdditivesCategorySandwich('fillings', additives)}</p>
+                            <p>Размер: ${ModalOrder.getAdditivesCategorySandwich('sizes', additives)}</p>
+                            <p>Хлеб: ${ModalOrder.getAdditivesCategorySandwich('breads', additives)}</p>
+                            <p>Овощи: ${ModalOrder.getAdditivesCategorySandwich('vegetables', additives)}</p>
+                            <p>Соусы: ${ModalOrder.getAdditivesCategorySandwich('sauses', additives)}</p>
+                            <p>Начинка: ${ModalOrder.getAdditivesCategorySandwich('fillings', additives)}</p>
                         </div>
                     </div>
                 
@@ -87,13 +87,11 @@ export default class ModalOrder extends HTMLElement {
     }
   }
 
-  getAdditivesCategorySandwich(category, additives) {
-    let result = '';
-    for (const additive of additives) {
-      if (additive.category === category) {
-        result += `${additive.name}; `;
-      }
-    }
+  static getAdditivesCategorySandwich(category, additives) {
+    const result = additives
+      .filter((additive) => additive.category === category)
+      .map((additive) => additive.name)
+      .join(', ');
 
     if (!result) {
       return 'Нет;';

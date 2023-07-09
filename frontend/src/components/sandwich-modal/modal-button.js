@@ -16,7 +16,7 @@ export default class ModalButton extends HTMLElement {
       html += '<button class="display: none" id="forwardButton">Вперед > > </button>';
     }
 
-    if (this.stateModal.selectCategory !== 'size') {
+    if (this.stateModal.selectCategory !== 'sizes') {
       html += '<button id="backButton"> < < Назад</button>';
     }
 
@@ -29,7 +29,7 @@ export default class ModalButton extends HTMLElement {
         .addEventListener('click', () => this.setNavigateButton(1));
     }
 
-    if (this.stateModal.selectCategory !== 'size') {
+    if (this.stateModal.selectCategory !== 'sizes') {
       this.querySelector('#backButton')
         .addEventListener('click', () => this.setNavigateButton(-1));
     }

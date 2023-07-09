@@ -12,7 +12,7 @@ export default class CurrentProducts extends HTMLElement {
     this.id = 'content';
     this.subscribeToUploadDataProduct();
     this.subscribeToCategoryChanges();
-    this.uploadDataProductToStore();
+    CurrentProducts.uploadDataProductToStore();
   }
 
   render() {
@@ -47,7 +47,7 @@ export default class CurrentProducts extends HTMLElement {
     });
   }
 
-  async uploadDataProductToStore() {
+  static async uploadDataProductToStore() {
     const dataProduct = await getDataProduct();
 
     storeDataProduct.dispatch(productReceived(dataProduct));
