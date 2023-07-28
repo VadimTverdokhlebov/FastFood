@@ -1,5 +1,4 @@
 node_modules
-dbDump
 dist
 logs
 .env
